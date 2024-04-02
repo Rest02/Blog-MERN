@@ -1,7 +1,9 @@
 import {Router} from 'express'
-import { createEmpresa, createCategoria, createProducto, createInf} from '../controllers/store.controllers.js'
+import { createEmpresa, createCategoria, createProducto, createInf, getEmpresa} from '../controllers/store.controllers.js'
 
 const router = Router()
+
+// ------------------------------------------------  METODOS POST -----------------------------------------------
 
 // ------------- CREAR EMPRESA - RUTA ------------
 
@@ -20,17 +22,24 @@ router.post("/productos", createProducto)
 
 router.post("/productos/infnutri", createInf)
 
+//--------------------------------------------------
+
+// ---------------------------------------------------------------------------------------------------------------
+
+
+// -------------------------------------------------  METODOS GET -------------------------------------------------
+router.get("/empresa", getEmpresa)
 
 
 
-router.get("/store")
-
-router.get("/store/:id")
+// ----------------------------------------------------------------------------------------------------------------
 
 
-router.put("/store/:id")
 
-router.delete("/store/:id")
+
+
+
+
 
 
 export default router

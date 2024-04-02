@@ -1,4 +1,8 @@
 import { pool } from "../db.js";
+import router from "../routes/store.routes.js";
+
+
+//------------------------------------- METODOS POST --------------------------------------------
 
 // APARTADO CREAR EMPRESA
 
@@ -116,3 +120,10 @@ export const createInf = async (req, res) => {
     idProducto,
   });
 };
+
+//-----------------------------------------------------------------------------------------------
+
+export const getEmpresa = async (req, res) =>{
+  const [result] = await pool.query("SELECT * FROM empresa")
+  res.json(result[0]) 
+}
