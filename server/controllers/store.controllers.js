@@ -81,3 +81,38 @@ export const createCategoria = async (req, res) => {
     imagen,
   });
 };
+
+// APARTADO CREAR INF NUTRICIONAL
+export const createInf = async (req, res) => {
+  const {
+    energia,
+    proteinas,
+    grasaTotal,
+    carbohidratos,
+    azucaresTotal,
+    sodio,
+    idProducto,
+  } = req.body;
+  const result = pool.query(
+    "INSERT INTO infNutricional(energia, proteinas, grasaTotal, carbohidratos, azucaresTotal, sodio, idProducto) VALUES(?,?,?,?,?,?,?)",
+    [
+      energia,
+      proteinas,
+      grasaTotal,
+      carbohidratos,
+      azucaresTotal,
+      sodio,
+      idProducto,
+    ]
+  );
+  console.log(result);
+  res.json({
+    energia,
+    proteinas,
+    grasaTotal,
+    carbohidratos,
+    azucaresTotal,
+    sodio,
+    idProducto,
+  });
+};

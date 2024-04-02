@@ -1,5 +1,5 @@
 import {Router} from 'express'
-import { createEmpresa, createCategoria, createProducto } from '../controllers/store.controllers.js'
+import { createEmpresa, createCategoria, createProducto, createInf} from '../controllers/store.controllers.js'
 
 const router = Router()
 
@@ -14,6 +14,11 @@ router.post("/productos/categoria", createCategoria)
 
 router.post("/productos", createProducto)
 // -----------------------------------------------
+
+
+// ---------CREAR INFORMACION NUTRICIONAL ---------
+
+router.post("/productos/infnutri", createInf)
 
 
 
