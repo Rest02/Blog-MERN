@@ -1,4 +1,5 @@
 import {Router} from 'express'
+import { createEmpresa } from '../controllers/store.controllers.js'
 
 const router = Router()
 
@@ -7,7 +8,7 @@ router.get("/store")
 
 router.get("/store/:id")
 
-router.post("/store")
+router.post("/empresa"  , createEmpresa)
 
 router.put("/store/:id")
 
