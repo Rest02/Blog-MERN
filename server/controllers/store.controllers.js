@@ -34,19 +34,50 @@ export const createEmpresa = async (req, res) => {
 
 // APARTADO CREAR PRODUCTO
 
+export const createProducto = async (req, res) => {
+  const rutEmpresa = 211251026;
+  const {
+    nombreProducto,
+    descripcionProducto,
+    colorProducto,
+    imagen,
+    idCategoria,
+  } = req.body;
+
+  const result = pool.query(
+    "INSERT INTO productos(nombreProducto, descripcionProducto, colorProducto, imagen, rutEmpresa, idCategoria) VALUES(?,?,?,?,?,?)",
+    [
+      nombreProducto,
+      descripcionProducto,
+      colorProducto,
+      imagen,
+      rutEmpresa,
+      idCategoria,
+    ]
+  );
+  console.log(result);
+  res.json({
+    nombreProducto,
+    descripcionProducto,
+    colorProducto,
+    imagen,
+    rutEmpresa,
+    idCategoria,
+  });
+};
+
 // APARTADO CREAR CATEGORIA
 
 export const createCategoria = async (req, res) => {
   const { nombreCategoria, descripcionCategoria, imagen } = req.body;
-  const result = pool.query("INSERT INTO categoria(nombreCategoria, descripcionCategoria, imagen) VALUES(?,?,?)", [
-    nombreCategoria,
-    descripcionCategoria,
-    imagen
-  ])
-  console.log(result)
+  const result = pool.query(
+    "INSERT INTO categoria(nombreCategoria, descripcionCategoria, imagen) VALUES(?,?,?)",
+    [nombreCategoria, descripcionCategoria, imagen]
+  );
+  console.log(result);
   res.json({
     nombreCategoria,
     descripcionCategoria,
-    imagen
-  })
+    imagen,
+  });
 };
