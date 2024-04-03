@@ -1,5 +1,5 @@
 import {Router} from 'express'
-import { createEmpresa, createCategoria, createProducto, createInf, getEmpresa, getProductos, getProducto} from '../controllers/store.controllers.js'
+import { createEmpresa, createCategoria, createProducto, createInf, getEmpresa, getProductos, getProducto, deleteProducto} from '../controllers/store.controllers.js'
 
 const router = Router()
 
@@ -37,8 +37,11 @@ router.get("/productos/:id", getProducto) // MAS LA INF NUTRICIONAL
 
 // ----------------------------------------------------------------------------------------------------------------
 
+// ------------------------------------------------ METODOS DELETE ------------------------------------------------
 
+router.delete("/productos/opciones/:id", deleteProducto)
 
+// ----------------------------------------------------------------------------------------------------------------
 
 
 
