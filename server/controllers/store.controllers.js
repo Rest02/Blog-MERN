@@ -86,6 +86,7 @@ export const createCategoria = async (req, res) => {
 };
 
 // APARTADO CREAR INF NUTRICIONAL
+
 export const createInf = async (req, res) => {
   const {
     energia,
@@ -128,19 +129,26 @@ export const getEmpresa = async (req, res) => {
 };
 
 export const getProductos = async (req, res) => {
-  const [result] = await pool.query("SELECT * FROM productos")
-  res.json(result) 
+  const [result] = await pool.query("SELECT * FROM productos");
+  res.json(result);
 };
 
-export const getProducto = async (req, res) =>{
-  const [result] = await pool.query("SELECT * FROM productos WHERE idProducto = ? ", [req.params.id])
-  if(result.length >= 1){
-    res.json(result[0])
-  }else{
+export const getProducto = async (req, res) => {
+  // QUERY PARA EL PRODUCTO POR ID y PARA LA INFORMACION NUTRICIONAL POR ID
+  const [result] = await pool.query(
+    "SELECT * FROM productos WHERE idProducto = ? ",
+    [req.params.id]
+  );
+  const [result2] = await pool.query(
+    "SELECT * FROM infNutricional WHERE idInfNutricional = ? ",
+    [req.params.id]
+  );
+  if (result.length >= 1) {
+    res.json(result.concat(result2));
+  } else {
     res.json({
-      message : "No se encontro el producto deseado"
-    })
+      message: "No se encontro el producto deseado",
+    });
   }
-
-}
+};
 //-------------------------------------------------------------------------------------------------

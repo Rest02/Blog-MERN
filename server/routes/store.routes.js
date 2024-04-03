@@ -28,11 +28,12 @@ router.post("/productos/infnutri", createInf)
 
 
 // -------------------------------------------------  METODOS GET -------------------------------------------------
+
 router.get("/empresa", getEmpresa)
 
 router.get("/productos", getProductos) 
 
-router.get("/productos/:id", getProducto)
+router.get("/productos/:id", getProducto) // MAS LA INF NUTRICIONAL
 
 // ----------------------------------------------------------------------------------------------------------------
 
