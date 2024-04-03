@@ -131,4 +131,16 @@ export const getProductos = async (req, res) => {
   const [result] = await pool.query("SELECT * FROM productos")
   res.json(result) 
 };
+
+export const getProducto = async (req, res) =>{
+  const [result] = await pool.query("SELECT * FROM productos WHERE idProducto = ? ", [req.params.id])
+  if(result.length >= 1){
+    res.json(result[0])
+  }else{
+    res.json({
+      message : "No se encontro el producto deseado"
+    })
+  }
+
+}
 //-------------------------------------------------------------------------------------------------

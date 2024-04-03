@@ -1,5 +1,5 @@
 import {Router} from 'express'
-import { createEmpresa, createCategoria, createProducto, createInf, getEmpresa, getProductos} from '../controllers/store.controllers.js'
+import { createEmpresa, createCategoria, createProducto, createInf, getEmpresa, getProductos, getProducto} from '../controllers/store.controllers.js'
 
 const router = Router()
 
@@ -31,6 +31,8 @@ router.post("/productos/infnutri", createInf)
 router.get("/empresa", getEmpresa)
 
 router.get("/productos", getProductos) 
+
+router.get("/productos/:id", getProducto)
 
 // ----------------------------------------------------------------------------------------------------------------
 
