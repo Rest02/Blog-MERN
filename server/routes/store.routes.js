@@ -1,5 +1,5 @@
 import {Router} from 'express'
-import { createEmpresa, createCategoria, createProducto, createInf, getEmpresa, getProductos, getProducto, deleteProducto, updateProducto} from '../controllers/store.controllers.js'
+import { createEmpresa, createCategoria, createProducto, createInf, getEmpresa, getProductos, getProducto, deleteProducto, updateProducto, updateInfNutricional} from '../controllers/store.controllers.js'
 
 const router = Router()
 
@@ -47,7 +47,7 @@ router.delete("/productos/opciones/:id", deleteProducto)
 
 
 router.put("/productos/update/:id", updateProducto)
-// router.put("/infNutricional/update/:id", )
+router.put("/infNutricional/update/:id", updateInfNutricional)
 // router.put("/categoria/update/:id", )
 
 

@@ -184,6 +184,12 @@ export const updateProducto = async (req, res) => {
 };
 
 
-
+export const updateInfNutricional = async (req, res) =>{
+  const [result] = await pool.query("UPDATE infNutricional SET ? WHERE idInfNutricional = ?", [
+    req.body,
+    req.params.id
+  ]);
+  res.json(result)
+}
 
 //-------------------------------------------------------------------------------------------------
