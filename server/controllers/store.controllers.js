@@ -155,15 +155,35 @@ export const getProducto = async (req, res) => {
 
 //------------------------------------ METODO DELETE ----------------------------------------------
 
-
-export const deleteProducto = async (req,res) => {
-  console.log(req.params.id)
-  const [result] = await pool.query("DELETE FROM productos WHERE idProducto = ?", [req.params.id])
-  if(result.affectedRows === 0){
-    return res.status(404).json({ message : "Producto no encontrado en la base de datos"})
+export const deleteProducto = async (req, res) => {
+  console.log(req.params.id);
+  const [result] = await pool.query(
+    "DELETE FROM productos WHERE idProducto = ?",
+    [req.params.id]
+  );
+  if (result.affectedRows === 0) {
+    return res
+      .status(404)
+      .json({ message: "Producto no encontrado en la base de datos" });
   }
 
-  res.sendStatus(204)
-}
+  res.sendStatus(204);
+};
+
+//-------------------------------------------------------------------------------------------------
+
+//------------------------------------- METODO PUT ------------------------------------------------
+
+export const updateProducto = async (req, res) => {
+  const [result] = await pool.query(
+    "UPDATE productos SET ? WHERE idProducto = ?",
+    [req.body, req.params.id]
+  );
+
+  res.json(result);
+};
+
+
+
 
 //-------------------------------------------------------------------------------------------------
