@@ -1,8 +1,12 @@
 import React from 'react'
+import {Route, Routes} from 'react-router-dom'
+import ProductsList from './pages/ProductsList'
 
 function App() {
   return (
-    <div>Hello world</div>
+    <Routes>
+      <Route path = "/" element = {<ProductsList/>} ></Route>
+    </Routes>
   )
 }
 
