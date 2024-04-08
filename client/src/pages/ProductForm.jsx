@@ -1,9 +1,9 @@
 import React from 'react'
 
-function ProductForn() {
+function ProductForm() {
   return (
     <div>Crear formulario ProductForn</div>
   )
 }
 
-export default ProductForn
+export default ProductForm
