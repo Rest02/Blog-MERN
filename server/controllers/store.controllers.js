@@ -1,5 +1,7 @@
 import { pool } from "../db.js";
+import { upload } from "../multer.js";
 import router from "../routes/store.routes.js";
+import { upload } from '../multer.js'
 
 //------------------------------------- METODOS POST --------------------------------------------
 
@@ -43,7 +45,7 @@ export const createEmpresa = async (req, res) => {
 
 // APARTADO CREAR PRODUCTO
 
-export const createProducto = async (req, res) => {
+export const createProducto = upload.single("image"), async(req, res) => {
   try {
     const rutEmpresa = 211251026;
     const {
