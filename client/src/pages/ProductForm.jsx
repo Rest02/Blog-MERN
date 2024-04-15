@@ -1,7 +1,10 @@
 import { Form, Formik } from "formik";
 import { createProductoRequest } from "../api/infodApi";
 
+
 function ProductForm() {
+
+
   return (
     <div>
       <Formik
@@ -9,20 +12,36 @@ function ProductForm() {
           Nombre: "",
           Descripción: "",
           Color: "",
-          Imagen: "",
+          photo: "",
+          idCategoria: "1",
         }}
-        onSubmit={async (values) => {
-          console.log(values);
+        onSubmit={async (values, { resetForm, setSubmitting }) => {
           try {
-            const response = await createProductoRequest(values);
+            const formData = new FormData();
+            formData.append("nombreProducto", values.Nombre);
+            formData.append("descripcionProducto", values.Descripción);
+            formData.append("colorProducto", values.Color);
+            formData.append("photo", values.photo);
+            formData.append("idCategoria", values.idCategoria); // Agregar categoría
+      
+            const response = await createProductoRequest(formData);
             console.log(response);
-            actions.resetForm();
+            resetForm();
+
           } catch (error) {
             console.log(error);
+          } finally {
+            setSubmitting(false);
           }
         }}
       >
-        {({ handleChange, handleSubmit, values, isSubmitting }) => (
+        {({
+          handleChange,
+          handleSubmit,
+          setFieldValue,
+          values,
+          isSubmitting,
+        }) => (
           <Form onSubmit={handleSubmit}>
             {/* --------------------------------------------------------------------------------- */}
             <label>Nombre</label>
@@ -53,13 +72,29 @@ function ProductForm() {
               value={values.Color}
             />
             {/* --------------------------------------------------------------------------------- */}
-            <label>Imagen</label>
+            <label>Upload file</label>
             <input
               type="file"
-              name="Imagen"
-              onChange={handleChange}
-              value={values.Imagen}
+              name="photo"
+              accept="image/*"
+              onChange={(e) => {
+                setFieldValue("photo", e.currentTarget.files[0]);
+              }}
+
             />
+            {/* --------------------------------------------------------------------------------- */}
+
+            <label>Categoría</label>
+            <select
+              name="idCategoria"
+              onChange={handleChange}
+              value={values.idCategoria}
+            >
+              <option value="1">Frutas y verduras</option>
+              <option value="2">Categoria 2</option>
+              <option value="3">Categoria 3</option>
+            </select>
+
 
             {/* --------------------------------------------------------------------------------- */}
 

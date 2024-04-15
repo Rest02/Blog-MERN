@@ -47,15 +47,16 @@ export const createEmpresa = async (req, res) => {
 export const createProducto = async (req, res) => {
   try {
     const rutEmpresa = 211251026;
-    const {filename} = req.file
+    const { filename } = req.file;
     const {
       nombreProducto,
       descripcionProducto,
       colorProducto,
       idCategoria,
     } = req.body;
+    
 
-    const result = pool.query(
+    const result = await pool.query(
       "INSERT INTO productos(nombreProducto, descripcionProducto, colorProducto, imagen, rutEmpresa, idCategoria) VALUES(?,?,?,?,?,?)",
       [
         nombreProducto,

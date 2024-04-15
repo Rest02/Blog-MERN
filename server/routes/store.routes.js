@@ -14,7 +14,7 @@ router.post("/empresa"  , createEmpresa)
 // -------- CREAR CATEGORIA Y PRODUCTO -----------
 router.post("/productos/categoria", createCategoria)
 
-router.post("/productos", upload.single("image"), createProducto)
+router.post("/productos", upload.single("photo"), createProducto)
 // -----------------------------------------------
 
 
