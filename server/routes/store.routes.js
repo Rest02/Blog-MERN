@@ -1,6 +1,6 @@
 import {Router} from 'express'
 import { createEmpresa, createCategoria, createProducto, createInf, getEmpresa, getProductos, getProducto, deleteProducto, updateProducto, updateInfNutricional, updateCategoria} from '../controllers/store.controllers.js'
-
+import { upload } from '../multer.js'
 const router = Router()
 
 // ------------------------------------------------  METODOS POST -----------------------------------------------
@@ -14,7 +14,7 @@ router.post("/empresa"  , createEmpresa)
 // -------- CREAR CATEGORIA Y PRODUCTO -----------
 router.post("/productos/categoria", createCategoria)
 
-router.post("/productos", createProducto)
+router.post("/productos", upload.single("image"), createProducto)
 // -----------------------------------------------
 
 

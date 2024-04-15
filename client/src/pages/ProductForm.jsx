@@ -9,13 +9,14 @@ function ProductForm() {
           Nombre: "",
           Descripción: "",
           Color: "",
+          Imagen: "",
         }}
         onSubmit={async (values) => {
           console.log(values);
           try {
             const response = await createProductoRequest(values);
             console.log(response);
-            actions.resetForm()
+            actions.resetForm();
           } catch (error) {
             console.log(error);
           }
@@ -51,6 +52,15 @@ function ProductForm() {
               onChange={handleChange}
               value={values.Color}
             />
+            {/* --------------------------------------------------------------------------------- */}
+            <label>Imagen</label>
+            <input
+              type="file"
+              name="Imagen"
+              onChange={handleChange}
+              value={values.Imagen}
+            />
+
             {/* --------------------------------------------------------------------------------- */}
 
             <button type="submit" disabled={isSubmitting}>

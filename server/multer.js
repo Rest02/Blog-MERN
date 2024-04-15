@@ -1,7 +1,7 @@
 import multer from 'multer'
 
 
-const storage = multer.storage({
+const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cd(null , "public/image")
     },

@@ -1,7 +1,7 @@
 import { pool } from "../db.js";
 import { upload } from "../multer.js";
 import router from "../routes/store.routes.js";
-import { upload } from '../multer.js'
+
 
 //------------------------------------- METODOS POST --------------------------------------------
 
@@ -44,15 +44,14 @@ export const createEmpresa = async (req, res) => {
 };
 
 // APARTADO CREAR PRODUCTO
-
-export const createProducto = upload.single("image"), async(req, res) => {
+export const createProducto = async (req, res) => {
   try {
     const rutEmpresa = 211251026;
+    const {filename} = req.file
     const {
       nombreProducto,
       descripcionProducto,
       colorProducto,
-      imagen,
       idCategoria,
     } = req.body;
 
@@ -62,7 +61,7 @@ export const createProducto = upload.single("image"), async(req, res) => {
         nombreProducto,
         descripcionProducto,
         colorProducto,
-        imagen,
+        filename,
         rutEmpresa,
         idCategoria,
       ]
@@ -72,7 +71,7 @@ export const createProducto = upload.single("image"), async(req, res) => {
       nombreProducto,
       descripcionProducto,
       colorProducto,
-      imagen,
+      filename,
       rutEmpresa,
       idCategoria,
     });
