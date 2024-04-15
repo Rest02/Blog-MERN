@@ -1,9 +1,9 @@
 import { Form, Formik } from "formik";
 import { createProductoRequest } from "../api/infodApi";
-
+import { useNavigate } from 'react-router-dom'
 
 function ProductForm() {
-
+  const navigate = useNavigate()
 
   return (
     <div>
@@ -27,7 +27,7 @@ function ProductForm() {
             const response = await createProductoRequest(formData);
             console.log(response);
             resetForm();
-
+            navigate("/")
           } catch (error) {
             console.log(error);
           } finally {
