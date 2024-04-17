@@ -30,8 +30,6 @@ function ProductForm() {
             navigate("/")
           } catch (error) {
             console.log(error);
-          } finally {
-            setSubmitting(false);
           }
         }}
       >
