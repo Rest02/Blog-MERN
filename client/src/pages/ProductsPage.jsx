@@ -18,6 +18,8 @@ function ProductsList() {
       {productos.map((producto) => (
         <div key={producto.idProducto}>
           <h1>{producto.nombreProducto}</h1>
+          <p>{producto.descripcionProducto}</p>
+          {/* <img src="{producto.imagen}" alt="" /> */}
         </div>
       ))}
     </div>
