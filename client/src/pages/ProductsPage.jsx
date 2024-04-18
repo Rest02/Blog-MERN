@@ -19,7 +19,8 @@ function ProductsList() {
         <div key={producto.idProducto}>
           <h1>{producto.nombreProducto}</h1>
           <p>{producto.descripcionProducto}</p>
-          {/* <img src="{producto.imagen}" alt="" /> */}
+          <img src={`http://localhost:4000/images/`+producto.imagen} alt="" />
+          {console.log(producto.imagen)}
         </div>
       ))}
     </div>
