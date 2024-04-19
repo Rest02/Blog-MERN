@@ -152,7 +152,7 @@ export const createInf = async (req, res) => {
 export const getEmpresa = async (req, res) => {
   try {
     const [result] = await pool.query("SELECT * FROM empresa");
-    res.json(result[0]);
+    res.json(result);
   } catch (error) {
     return res.status(404).json({
       message: error.message,

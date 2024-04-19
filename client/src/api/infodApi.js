@@ -7,3 +7,7 @@ export const createProductoRequest = async (producto) => {
 export const listTaskRequest = async() => {
   return axios.get("http://localhost:4000/productos")
 }
+
+export const listEmpresa = async() => {
+  return axios.get("http://localhost:4000/empresa")
+}
