@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { listTaskRequest } from "../api/infodApi";
+import ProductoCard from '../components/ProductoCard'
 
 
 function ProductsList() {
@@ -17,12 +18,7 @@ function ProductsList() {
   return (
     <div>
       {productos.map((producto) => (
-        <div key={producto.idProducto}>
-          <h1>{producto.nombreProducto}</h1>
-          <p>{producto.descripcionProducto}</p>
-          <img src={`http://localhost:4000/images/`+producto.imagen} alt="" />
-          {console.log(producto.imagen)}
-        </div>
+        <ProductoCard producto = {producto} key = {producto.idProducto}/>
       ))}
     </div>
   );
