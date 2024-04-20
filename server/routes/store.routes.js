@@ -7,7 +7,7 @@ const router = Router()
 
 // ------------- CREAR EMPRESA - RUTA ------------
 
-router.post("/empresa"  , createEmpresa)
+router.post("/empresa", upload.single("photo"), createEmpresa)
 
 //------------------------------------------------
 

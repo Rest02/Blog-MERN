@@ -20,7 +20,7 @@ function Nosotros() {
           <p>{asd.descripcionEmpresa}</p>
           <p>{asd.fundador}</p>
           <p>{asd.nacionalidad}</p>
-          {/* <img src="" alt="" /> */}
+          {/*   <img src="" alt="" /> */}
           <p>{asd.lema}</p>
         </div>
       ))}

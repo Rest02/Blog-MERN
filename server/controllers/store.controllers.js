@@ -9,13 +9,13 @@ import router from "../routes/store.routes.js";
 
 export const createEmpresa = async (req, res) => {
   try {
+    const { filename } = req.file
     const {
       rutEmpresa,
       nombreEmpresa,
       descripcionEmpresa,
       fundador,
       nacionalidad,
-      imagen,
       lema,
     } = req.body;
     const result = await pool.query(
@@ -26,7 +26,7 @@ export const createEmpresa = async (req, res) => {
         descripcionEmpresa,
         fundador,
         nacionalidad,
-        imagen,
+        filename,
         lema,
       ]
     );
