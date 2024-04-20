@@ -1,8 +1,22 @@
 import React from 'react'
+import { Form, Formik } from "formik";
 
 function EditEmpresa() {
   return (
-    <div>EditEmpresa</div>
+    <div>
+      <Formik>
+        initialValues={{
+
+        }}
+
+        onSubmit={
+
+        }
+        <Form>
+          
+        </Form>
+      </Formik>
+    </div>
   )
 }
 
