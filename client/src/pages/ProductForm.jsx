@@ -1,22 +1,18 @@
 import { Form, Formik } from "formik";
 import { createProductoRequest } from "../api/infodApi";
-import { useNavigate, useParams } from 'react-router-dom'
-import { useContext } from 'react'
-import { InfoodContext } from '../Context/Context'
+import { useNavigate, useParams } from "react-router-dom";
+import { useInfood } from "../Context/Context";
 
 function ProductForm() {
-  const navigate = useNavigate()
-  const params = useParams()
+  const navigate = useNavigate();
+  const params = useParams();
 
-  const { text } = useContext(InfoodContext)
-  console.log(text)
+  const { text } = useInfood();
+  console.log(text);
 
   return (
     <div>
-
-
       <h1>{params.id ? "Editando producto" : "Creando producto"}</h1>
-
 
       <Formik
         initialValues={{
@@ -34,11 +30,11 @@ function ProductForm() {
             formData.append("colorProducto", values.Color);
             formData.append("photo", values.photo);
             formData.append("idCategoria", values.idCategoria); // Agregar categoría
-      
+
             const response = await createProductoRequest(formData);
             console.log(response);
             resetForm();
-            navigate("/")
+            navigate("/");
           } catch (error) {
             console.log(error);
           }
@@ -89,7 +85,6 @@ function ProductForm() {
               onChange={(e) => {
                 setFieldValue("photo", e.currentTarget.files[0]);
               }}
-
             />
             {/* --------------------------------------------------------------------------------- */}
 
@@ -103,7 +98,6 @@ function ProductForm() {
               <option value="2">Categoria 2</option>
               <option value="3">Categoria 3</option>
             </select>
-
 
             {/* --------------------------------------------------------------------------------- */}
 
