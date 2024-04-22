@@ -15,6 +15,7 @@ function App() {
       <Routes>
         <Route path="/" element={<ProductsList />}></Route>
         <Route path="/newProduct" element={<ProductForm />}></Route>
+        <Route path="/editProduct/:id" element={<ProductForm/>}></Route>
         <Route path="/nosotros" element={<Nosotros/>}></Route>
         <Route path="/editEmpresa/:id" element={<EditEmpresa/>}></Route>
         <Route path="*" element={<NotFound></NotFound>}></Route>

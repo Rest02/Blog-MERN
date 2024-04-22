@@ -11,3 +11,7 @@ export const listTaskRequest = async() => {
 export const listEmpresa = async() => {
   return axios.get("http://localhost:4000/empresa")
 }
+
+export const editProducto = async(id) => {
+  return axios.get(`http://localhost:4000/productos/${id}`)
+} 

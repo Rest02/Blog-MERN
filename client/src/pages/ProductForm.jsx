@@ -1,12 +1,19 @@
 import { Form, Formik } from "formik";
 import { createProductoRequest } from "../api/infodApi";
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 function ProductForm() {
   const navigate = useNavigate()
+  const params = useParams()
+
 
   return (
     <div>
+
+
+      <h1>{params.id ? "Editando producto" : "Creando producto"}</h1>
+
+
       <Formik
         initialValues={{
           Nombre: "",
