@@ -1,11 +1,15 @@
 import { Form, Formik } from "formik";
 import { createProductoRequest } from "../api/infodApi";
 import { useNavigate, useParams } from 'react-router-dom'
+import { useContext } from 'react'
+import { InfoodContext } from '../Context/Context'
 
 function ProductForm() {
   const navigate = useNavigate()
   const params = useParams()
 
+  const { text } = useContext(InfoodContext)
+  console.log(text)
 
   return (
     <div>

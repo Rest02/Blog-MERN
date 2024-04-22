@@ -6,10 +6,11 @@ import NotFound from "./pages/NotFound";
 import NavBar from "./components/NavBar";
 import Nosotros from "./pages/Nosotros";
 import EditEmpresa from './pages/EditEmpresa'
+import { InfoodContextProvider } from './Context/Context'
 
 function App() {
   return (
-    <>
+    <InfoodContextProvider>
       <NavBar />
 
       <Routes>
@@ -20,8 +21,8 @@ function App() {
         <Route path="/editEmpresa/:id" element={<EditEmpresa/>}></Route>
         <Route path="*" element={<NotFound></NotFound>}></Route>
       </Routes>
-    </>
+    </InfoodContextProvider>
   );
-}
+} 
 
 export default App;
