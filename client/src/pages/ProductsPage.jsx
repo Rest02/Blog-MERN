@@ -1,25 +1,28 @@
 import React, { useEffect, useState } from "react";
-import { listTaskRequest } from "../api/infodApi";
-import ProductoCard from '../components/ProductoCard'
-
+import ProductoCard from "../components/ProductoCard";
+import { useInfood } from "../Context/Context";
 
 function ProductsList() {
-  const [productos, setProductos] = useState([]);
+  const { productos, cargarTareas } = useInfood();
 
   useEffect(() => {
-    async function cargarTareas() {
-      const response = await listTaskRequest();
-      // console.log(response.data)
-      setProductos(response.data);
-    }
     cargarTareas();
   }, []);
 
+  function renderMain() {
+    if (productos.length == 0) {
+      return <h1>No hay productos guardados aún...</h1>;
+    } else {
+      return productos.map((producto) => (
+        <ProductoCard producto={producto} key={producto.idProducto} />
+      ));
+    }
+  }
+
   return (
     <div>
-      {productos.map((producto) => (
-        <ProductoCard producto = {producto} key = {producto.idProducto}/>
-      ))}
+      <h1>Productos</h1>
+      {renderMain()}
     </div>
   );
 }
