@@ -1,14 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { listEmpresa } from "../api/infodApi";
+import React, { useEffect } from "react";
+import { useInfood } from '../Context/Context'
 
 function Nosotros() {
-  const [empresa, setEmpresa] = useState([]);
+
+  const {listarEmpresa, empresa} = useInfood()
 
   useEffect(() => {
-    async function listarEmpresa() {
-      const response = await listEmpresa();
-      setEmpresa(response.data);
-    }
     listarEmpresa();
   }, []);
 
