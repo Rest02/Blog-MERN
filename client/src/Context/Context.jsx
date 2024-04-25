@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from "react";
-import { listProductoRequest, listEmpresa } from '../api/infodApi'
+import { listProductoRequest, listEmpresa, editProducto } from "../api/infodApi";
 
 export const InfoodContext = createContext();
 
@@ -16,19 +16,29 @@ export const InfoodContextProvider = ({ children }) => {
   const [productos, setProductos] = useState([]);
   const [empresa, setEmpresa] = useState([]);
 
-    async function cargarTareas() {
-      const response = await listProductoRequest();
-      setProductos(response.data);
-    }
+  async function cargarTareas() {
+    const response = await listProductoRequest();
+    setProductos(response.data);
+  }
 
-    async function listarEmpresa() {
-      const response = await listEmpresa();
-      setEmpresa(response.data);
-    }
+  async function listarEmpresa() {
+    const response = await listEmpresa();
+    setEmpresa(response.data);
+  }
 
+  async function getOneProducto(id) {
+    try {
+      const response = await editProducto(id);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   return (
-    <InfoodContext.Provider value={{ productos, empresa, cargarTareas, listarEmpresa}}>
+    <InfoodContext.Provider
+      value={{ productos, empresa, cargarTareas, listarEmpresa, getOneProducto }}
+    >
       {children}
     </InfoodContext.Provider>
   );

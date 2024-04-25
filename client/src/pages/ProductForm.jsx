@@ -2,13 +2,25 @@ import { Form, Formik } from "formik";
 import { createProductoRequest } from "../api/infodApi";
 import { useNavigate, useParams } from "react-router-dom";
 import { useInfood } from "../Context/Context";
+import { useEffect } from "react";
 
 function ProductForm() {
   const navigate = useNavigate();
   const params = useParams();
 
-  const { text } = useInfood();
+  const { text, getOneProducto } = useInfood();
   console.log(text);
+
+  useEffect(()=>{
+    async function sendProducto(){
+      if(params.id){
+        const product = await getOneProducto(params.id)
+        console.log(product)
+      }
+    }
+    sendProducto()
+  },[])
+
 
   return (
     <div>
