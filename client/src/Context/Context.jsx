@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from "react";
-import { listProductoRequest, listEmpresa, editProducto } from "../api/infodApi";
+import { listProductoRequest, listEmpresa, editProducto, createProductoRequest } from "../api/infodApi";
 
 export const InfoodContext = createContext();
 
@@ -35,9 +35,26 @@ export const InfoodContextProvider = ({ children }) => {
     }
   }
 
+  async function createProduct(values){
+    try {
+      const formData = new FormData();
+      formData.append("nombreProducto", values.Nombre);
+      formData.append("descripcionProducto", values.Descripción);
+      formData.append("colorProducto", values.Color);
+      formData.append("photo", values.photo);
+      formData.append("idCategoria", values.idCategoria); // Agregar categoría
+
+      const response = await createProductoRequest(formData);
+      console.log(response);
+
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <InfoodContext.Provider
-      value={{ productos, empresa, cargarTareas, listarEmpresa, getOneProducto }}
+      value={{ productos, empresa, cargarTareas, listarEmpresa, getOneProducto, createProduct }}
     >
       {children}
     </InfoodContext.Provider>

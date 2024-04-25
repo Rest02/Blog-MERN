@@ -1,5 +1,5 @@
 import { Form, Formik } from "formik";
-import { createProductoRequest } from "../api/infodApi";
+// import { createProductoRequest } from "../api/infodApi";
 import { useNavigate, useParams } from "react-router-dom";
 import { useInfood } from "../Context/Context";
 import { useEffect } from "react";
@@ -8,7 +8,7 @@ function ProductForm() {
   const navigate = useNavigate();
   const params = useParams();
 
-  const { text, getOneProducto } = useInfood();
+  const { text, getOneProducto, createProduct } = useInfood();
   console.log(text);
 
   useEffect(()=>{
@@ -35,21 +35,14 @@ function ProductForm() {
           idCategoria: "1",
         }}
         onSubmit={async (values, { resetForm, setSubmitting }) => {
-          try {
-            const formData = new FormData();
-            formData.append("nombreProducto", values.Nombre);
-            formData.append("descripcionProducto", values.Descripción);
-            formData.append("colorProducto", values.Color);
-            formData.append("photo", values.photo);
-            formData.append("idCategoria", values.idCategoria); // Agregar categoría
-
-            const response = await createProductoRequest(formData);
-            console.log(response);
+          if(params.id){
+            console.log(params.id)
+          }else{
+            await createProduct(values)
             resetForm();
             navigate("/");
-          } catch (error) {
-            console.log(error);
           }
+
         }}
       >
         {({
