@@ -1,5 +1,14 @@
 import { createContext, useContext, useState } from "react";
-import { listProductoRequest, listEmpresa, editProducto, createProductoRequest } from "../api/infodApi";
+import {
+  listProductoRequest,
+  listEmpresa,
+  editProducto,
+  createProductoRequest,
+  eliminarProducto,
+} from "../api/infodApi";
+import { useNavigate } from 'react-router'
+
+
 
 export const InfoodContext = createContext();
 
@@ -15,6 +24,7 @@ export const useInfood = () => {
 export const InfoodContextProvider = ({ children }) => {
   const [productos, setProductos] = useState([]);
   const [empresa, setEmpresa] = useState([]);
+  const navigate = useNavigate()
 
   async function cargarTareas() {
     const response = await listProductoRequest();
@@ -35,7 +45,7 @@ export const InfoodContextProvider = ({ children }) => {
     }
   }
 
-  async function createProduct(values){
+  async function createProduct(values) {
     try {
       const formData = new FormData();
       formData.append("nombreProducto", values.Nombre);
@@ -46,7 +56,16 @@ export const InfoodContextProvider = ({ children }) => {
 
       const response = await createProductoRequest(formData);
       console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
+  async function deleteProducto(id) {
+    try {
+      const response = await eliminarProducto(id);
+      console.log(response);
+      navigate(0)
     } catch (error) {
       console.log(error);
     }
@@ -54,7 +73,15 @@ export const InfoodContextProvider = ({ children }) => {
 
   return (
     <InfoodContext.Provider
-      value={{ productos, empresa, cargarTareas, listarEmpresa, getOneProducto, createProduct }}
+      value={{
+        productos,
+        empresa,
+        cargarTareas,
+        listarEmpresa,
+        getOneProducto,
+        createProduct,
+        deleteProducto,
+      }}
     >
       {children}
     </InfoodContext.Provider>

@@ -1,9 +1,11 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { useInfood } from '../Context/Context'
 
 function ProductoCard({ producto }) {
   const navigate = useNavigate();
-
+  const { deleteProducto } = useInfood()
+ 
   return (
     <div>
       <h1>{producto.nombreProducto}</h1>
@@ -12,7 +14,7 @@ function ProductoCard({ producto }) {
       <button onClick={() => navigate(`/editProduct/${producto.idProducto}`)}>
         Editar
       </button>
-      <button>Eliminar</button>
+      <button onClick={() => deleteProducto(producto.idProducto)}>Eliminar</button>
     </div>
   );
 }

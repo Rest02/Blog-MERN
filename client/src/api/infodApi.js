@@ -15,3 +15,7 @@ export const listEmpresa = async () => {
 export const editProducto = async (id) => {
   return axios.get(`http://localhost:4000/productos/${id}`);
 };
+
+export const eliminarProducto = async (id) =>{
+  return axios.delete(`http://localhost:4000/productos/opciones/${id}`)
+}
