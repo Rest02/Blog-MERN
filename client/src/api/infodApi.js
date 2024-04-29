@@ -27,5 +27,5 @@ export const listEmpresa = async () => {
 //----------------------------------------------------------------------------------------------------
 
 export const listCategorias = async () => {
-  return 
+  return axios.get("http://localhost:4000/categorias")
 }

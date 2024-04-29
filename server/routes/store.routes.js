@@ -1,5 +1,5 @@
 import {Router} from 'express'
-import { createEmpresa, createCategoria, createProducto, createInf, getEmpresa, getProductos, getProducto, deleteProducto, updateProducto, updateInfNutricional, updateCategoria} from '../controllers/store.controllers.js'
+import { createEmpresa, createCategoria, createProducto, createInf, getEmpresa, getProductos, getProducto, deleteProducto, updateProducto, updateInfNutricional, updateCategoria, getCategoria} from '../controllers/store.controllers.js'
 import { upload } from '../multer.js'
 const router = Router()
 
@@ -30,6 +30,8 @@ router.post("/productos/infnutri", createInf)
 // -------------------------------------------------  METODOS GET -------------------------------------------------
 
 router.get("/empresa", getEmpresa)
+
+router.get("/categorias", getCategoria)
 
 router.get("/productos", getProductos) 
 

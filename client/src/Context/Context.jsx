@@ -5,6 +5,7 @@ import {
   editProducto,
   createProductoRequest,
   eliminarProducto,
+  listCategorias
 } from "../api/infodApi";
 import { useNavigate } from 'react-router'
 
@@ -24,6 +25,7 @@ export const useInfood = () => {
 export const InfoodContextProvider = ({ children }) => {
   const [productos, setProductos] = useState([]);
   const [empresa, setEmpresa] = useState([]);
+  const [categoria, setCategoria] = useState([])
   const navigate = useNavigate()
 
   async function cargarTareas() {
@@ -71,16 +73,28 @@ export const InfoodContextProvider = ({ children }) => {
     }
   }
 
+
+  async function getCategorias() {
+    try{
+      const response = await listCategorias()
+      setCategoria(response.data)
+    }catch(error){
+      console.log(error)
+    }
+  }
+
   return (
     <InfoodContext.Provider
       value={{
         productos,
         empresa,
+        categoria,
         cargarTareas,
         listarEmpresa,
         getOneProducto,
         createProduct,
         deleteProducto,
+        getCategorias
       }}
     >
       {children}
