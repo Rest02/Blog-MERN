@@ -19,6 +19,9 @@ function NavBar() {
         <li>
           <Link to="/editEmpresa">Editar Empresa</Link>
         </li>
+        <li>
+          <Link to="/categorias">Categorias de productos</Link>
+        </li>
       </ul>
     </div>
   );

@@ -5,8 +5,9 @@ import ProductForm from "./pages/ProductForm";
 import NotFound from "./pages/NotFound";
 import NavBar from "./components/NavBar";
 import Nosotros from "./pages/Nosotros";
-import EditEmpresa from './pages/EditEmpresa'
-import { InfoodContextProvider } from './Context/Context'
+import EditEmpresa from "./pages/EditEmpresa";
+import { InfoodContextProvider } from "./Context/Context";
+import CategoriasPage from "./pages/CategoriasPage";
 
 function App() {
   return (
@@ -16,13 +17,14 @@ function App() {
       <Routes>
         <Route path="/" element={<ProductsList />}></Route>
         <Route path="/newProduct" element={<ProductForm />}></Route>
-        <Route path="/editProduct/:id" element={<ProductForm/>}></Route>
-        <Route path="/nosotros" element={<Nosotros/>}></Route>
-        <Route path="/editEmpresa/:id" element={<EditEmpresa/>}></Route>
+        <Route path="/editProduct/:id" element={<ProductForm />}></Route>
+        <Route path="/nosotros" element={<Nosotros />}></Route>
+        <Route path="/editEmpresa/:id" element={<EditEmpresa />}></Route>
+        <Route path="/categorias" element={<CategoriasPage />}></Route>
         <Route path="*" element={<NotFound></NotFound>}></Route>
       </Routes>
     </InfoodContextProvider>
   );
-} 
+}
 
 export default App;
