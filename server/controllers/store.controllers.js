@@ -1,3 +1,4 @@
+import { query } from "express";
 import { pool } from "../db.js";
 import { upload } from "../multer.js";
 import router from "../routes/store.routes.js";
@@ -195,6 +196,17 @@ export const getProducto = async (req, res) => {
     });
   }
 };
+
+export const getCategoria = async (req, res) => {
+  try{
+    const [result] = await pool.query("SELECT * FROM categoria")
+    req.json(result)
+  }catch(error){
+    return res.status(404).json({
+      message: error.message,
+    });
+  }
+}
 //-------------------------------------------------------------------------------------------------
 
 //------------------------------------ METODO DELETE ----------------------------------------------
