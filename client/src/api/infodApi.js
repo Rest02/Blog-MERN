@@ -29,3 +29,9 @@ export const listEmpresa = async () => {
 export const listCategorias = async () => {
   return axios.get("http://localhost:4000/categorias")
 }
+
+//----------------------------------------------------------------------------------------------------
+
+export const  createInfNutricional = async () => {
+  return axios.post("http://localhost:4000/productos/infnutri")
+}

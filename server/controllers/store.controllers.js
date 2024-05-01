@@ -110,6 +110,8 @@ export const createCategoria = async (req, res) => {
 
 export const createInf = async (req, res) => {
   try {
+    const {id} = req.params 
+    console.log(id)
     const {
       energia,
       proteinas,
