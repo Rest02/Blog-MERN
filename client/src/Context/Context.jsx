@@ -52,10 +52,10 @@ export const InfoodContextProvider = ({ children }) => {
   async function createProduct(values) {
     try {
       const formData = new FormData();
-      formData.append("nombreProducto", values.Nombre);
-      formData.append("descripcionProducto", values.Descripción);
-      formData.append("colorProducto", values.Color);
-      formData.append("photo", values.photo);
+      formData.append("nombreProducto", values.nombreProducto);
+      formData.append("descripcionProducto", values.descripcionProducto);
+      formData.append("colorProducto", values.colorProducto);
+      formData.append("imagen", values.imagen);
       formData.append("idCategoria", values.idCategoria); // Agregar categoría
 
       const response = await createProductoRequest(formData);

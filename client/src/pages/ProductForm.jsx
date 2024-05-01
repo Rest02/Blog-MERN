@@ -27,7 +27,7 @@ function ProductForm() {
           descripcionProducto: producto1[0].descripcionProducto,
           colorProducto: producto1[0].colorProducto,
           imagen: producto1[0].imagen,
-          idCategoria: producto1[0].idCategoria,
+          idCategoria: producto1[0].idCategoria.toString(),
         })
         console.log(producto1)
       }
