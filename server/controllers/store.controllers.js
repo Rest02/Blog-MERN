@@ -46,7 +46,7 @@ export const createEmpresa = async (req, res) => {
 
 // APARTADO CREAR PRODUCTO
 export const createProducto = async (req, res) => {
-  try {
+  // try {
     const rutEmpresa = 211251026;
     const { filename } = req.file;
     const {
@@ -77,11 +77,11 @@ export const createProducto = async (req, res) => {
       rutEmpresa,
       idCategoria,
     });
-  } catch (error) {
-    return res.status(404).json({
-      message: error.message,
-    });
-  }
+  // } catch (error) {
+  //   return res.status(404).json({
+  //     message: error.message,
+  //   });
+  // }
 };
 
 // APARTADO CREAR CATEGORIA
@@ -239,11 +239,13 @@ export const deleteProducto = async (req, res) => {
 
 export const updateProducto = async (req, res) => {
   try {
+    const { id } = req.params;
+    const { filename } = req.file; // Nueva imagen
+    const { nombreProducto, descripcionProducto, colorProducto, idCategoria } = req.body;
 
-    console.log(req.body)
-    const [result] = await pool.query(
-      "UPDATE productos SET ? WHERE idProducto = ?",
-      [req.body, req.params.id]
+    const result = await pool.query(
+      "UPDATE productos SET nombreProducto = ?, descripcionProducto = ?, colorProducto = ?, imagen = ?, idCategoria = ? WHERE idProducto = ?",
+      [nombreProducto, descripcionProducto, colorProducto, filename, idCategoria, id]
     );
 
     res.json(result);

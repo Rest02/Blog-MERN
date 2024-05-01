@@ -34,7 +34,7 @@ function ProductForm() {
     }
 
     sendProducto();
-
+    console.log(producto)
   }, []);
 
   
@@ -47,7 +47,15 @@ function ProductForm() {
         enableReinitialize={true}
         onSubmit={async (values, { resetForm, setSubmitting }) => {
           if (params.id) {
-            await updateProduct(params.id, values);
+            // Si es una actualización, incluir la nueva imagen en el formData
+            const formData = new FormData();
+            formData.append("nombreProducto", values.nombreProducto);
+            formData.append("descripcionProducto", values.descripcionProducto);
+            formData.append("colorProducto", values.colorProducto);
+            formData.append("imagen", values.imagen); // Se mantendrá la imagen anterior si no se selecciona una nueva
+            formData.append("idCategoria", values.idCategoria);
+        
+            await updateProduct(params.id, formData);
           } else {
             await createProduct(values);
             resetForm();
@@ -62,7 +70,7 @@ function ProductForm() {
           values,
           isSubmitting,
         }) => (
-          <Form onSubmit={handleSubmit}>
+          <Form encType="multipart/form-data" onSubmit={handleSubmit}>
             {/* --------------------------------------------------------------------------------- */}
             <label>Nombre</label>
             <input
@@ -95,10 +103,10 @@ function ProductForm() {
             <label>Upload file</label>
             <input
               type="file"
-              name="photo"
+              name="imagen"
               accept="image/*"
               onChange={(e) => {
-                setFieldValue("photo", e.currentTarget.files[0]);
+                setFieldValue("imagen", e.currentTarget.files[0]);
               }}
             />
             {/* --------------------------------------------------------------------------------- */}

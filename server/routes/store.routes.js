@@ -14,7 +14,7 @@ router.post("/empresa", upload.single("photo"), createEmpresa)
 // -------- CREAR CATEGORIA Y PRODUCTO -----------
 router.post("/productos/categoria", createCategoria)
 
-router.post("/productos", upload.single("photo"), createProducto)
+router.post("/productos", upload.single("imagen"), createProducto)
 // -----------------------------------------------
 
 
@@ -48,7 +48,7 @@ router.delete("/productos/opciones/:id", deleteProducto)
 // ------------------------------------------------ METODOS PUT ---------------------------------------------------
 
 
-router.put("/productos/update/:id", updateProducto)
+router.put("/productos/update/:id", upload.single("imagen"), updateProducto)
 router.put("/infNutricional/update/:id", updateInfNutricional)
 router.put("/categoria/update/:id", updateCategoria)
 
