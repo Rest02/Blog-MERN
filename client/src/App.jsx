@@ -8,6 +8,7 @@ import Nosotros from "./pages/Nosotros";
 import EditEmpresa from "./pages/EditEmpresa";
 import { InfoodContextProvider } from "./Context/Context";
 import CategoriasPage from "./pages/CategoriasPage";
+// import InfNutricionalPage from './pages/InfNutricionalPage'
 
 function App() {
   return (
