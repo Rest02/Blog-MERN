@@ -1,26 +1,17 @@
-import React, { useEffect } from 'react'
-import { useInfood } from '../Context/Context'
+import React, { useEffect } from "react";
+import { useInfood } from "../Context/Context";
+import CategoriaCard from "../components/CategoriaCard";
 
 function CategoriasPage() {
+  const { getCategorias, categoria } = useInfood();
 
-  const {getCategorias, categoria} = useInfood()
+  useEffect(() => {
+    getCategorias();
+  }, []);
 
-  useEffect(()=>{
-    getCategorias()
-  },[])
-
-  return (
-    <div>
-      <h1>Categorias</h1>
-      {categoria.map((cat)=>(
-        <div key={cat.idCategoria}>
-          <h1>{cat.nombreCategoria}</h1>
-          <p>{cat.descripcionCategoria}</p>
-          <img src="" alt="" />
-        </div>
-      ))}
-    </div>
-  )
+  return <div>
+    <CategoriaCard categoria = { categoria }/>
+  </div>;
 }
 
-export default CategoriasPage
+export default CategoriasPage;
