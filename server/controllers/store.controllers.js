@@ -239,6 +239,8 @@ export const deleteProducto = async (req, res) => {
 
 export const updateProducto = async (req, res) => {
   try {
+
+    console.log(req.body)
     const [result] = await pool.query(
       "UPDATE productos SET ? WHERE idProducto = ?",
       [req.body, req.params.id]

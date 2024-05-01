@@ -1,47 +1,53 @@
-import { Form, Formik } from "formik";
+import { Form, Formik, validateYupSchema } from "formik";
 // import { createProductoRequest } from "../api/infodApi";
 import { useNavigate, useParams } from "react-router-dom";
 import { useInfood } from "../Context/Context";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 function ProductForm() {
   const navigate = useNavigate();
   const params = useParams();
 
-  const { text, getOneProducto, createProduct } = useInfood();
-  console.log(text);
+  const {getOneProducto, createProduct, updateProduct } = useInfood();
+
+  const [producto, setProducto] = useState({
+    nombreProducto: "",
+    descripcionProducto: "",
+    colorProducto: "",
+    imagen: "",
+    idCategoria: "1",
+  });
 
   useEffect(() => {
     async function sendProducto() {
       if (params.id) {
-        const product = await getOneProducto(params.id);
-        console.log(product);
+        const producto1 = await getOneProducto(params.id);
+        setProducto({
+          nombreProducto: producto1[0].colorProducto,
+          descripcionProducto: producto1[0].descripcionProducto,
+          colorProducto: producto1[0].colorProducto,
+          imagen: producto1[0].imagen,
+          idCategoria: producto1[0].idCategoria,
+        })
+        console.log(producto1)
       }
     }
+
     sendProducto();
+
   }, []);
 
+  
   return (
     <div>
       <h1>{params.id ? "Editando producto" : "Creando producto"}</h1>
 
       <Formik
-        initialValues={{
-          Nombre: "",
-          Descripción: "",
-          Color: "",
-          Energia: "",
-          proteinas: "",
-          grasaTotal: "",
-          Carbohidratos: "",
-          azucaresTotal: "",
-          photo: "",
-          sodio: "",
-          idCategoria: "1",
-        }}
+        initialValues={producto}
+        enableReinitialize={true}
         onSubmit={async (values, { resetForm, setSubmitting }) => {
           if (params.id) {
-            console.log(params.id);
+            await updateProduct(params.id, values);
           } else {
             await createProduct(values);
             resetForm();
@@ -61,29 +67,29 @@ function ProductForm() {
             <label>Nombre</label>
             <input
               type="text"
-              name="Nombre"
+              name="nombreProducto"
               placeholder="Escribe le nombre del producto"
               onChange={handleChange}
-              value={values.Nombre}
+              value={values.nombreProducto}
             />
             {/* --------------------------------------------------------------------------------- */}
             <label>Descripción</label>
             <textarea
-              name="Descripción"
+              name="descripcionProducto"
               cols="30"
               rows="10"
               placeholder="Escribe una descripción del producto"
               onChange={handleChange}
-              value={values.Descripción}
+              value={values.descripcionProducto}
             ></textarea>
             {/* --------------------------------------------------------------------------------- */}
             <label>Color</label>
             <input
               type="text"
-              name="Color"
+              name="colorProducto"
               placeholder="Ingresa el color principal del producto"
               onChange={handleChange}
-              value={values.Color}
+              value={values.colorProducto}
             />
             {/* --------------------------------------------------------------------------------- */}
             <label>Upload file</label>
@@ -104,13 +110,13 @@ function ProductForm() {
               value={values.idCategoria}
             >
               <option value="1">Frutas y verduras</option>
-              <option value="2">Categoria 2</option>
+              <option value="2">Carnes y pescados</option>
               <option value="3">Categoria 3</option>
             </select>
 
             {/* --------------------------------------------------------------------------------- */}
 
-            <h1>Información Nutricional</h1>
+            {/* <h1>Información Nutricional</h1>
             <label>Energia</label>
             <input
               type="number"
@@ -118,43 +124,43 @@ function ProductForm() {
               placeholder="Ingresar un numero referente a la energia del producto"
               onChange={handleChange}
               value={values.Energia}
-            />
+            /> */}
 
             {/* --------------------------------------------------------------------------------- */}
 
-            <label>Proteinas</label>
+            {/* <label>Proteinas</label>
             <input
               type="number"
               name="proteinas"
               placeholder="Ingresar un numero referente a la proteina del producto"
               onChange={handleChange}
               value={values.proteinas}
-            />
+            /> */}
 
             {/* --------------------------------------------------------------------------------- */}
 
-            <label>Grasa Total</label>
+            {/* <label>Grasa Total</label>
             <input
               type="number"
               name="grasaTotal"
               placeholder="Ingresar un numero referente a la Grasa total del producto"
               onChange={handleChange}
               value={values.grasaTotal}
-            />
+            /> */}
 
             {/* --------------------------------------------------------------------------------- */}
 
-            <label>Carbohidratos</label>
+            {/* <label>Carbohidratos</label>
             <input
               type="number"
               name="Carbohidratos"
               placeholder="Ingresar un numero referente a los carbohidratos totales del producto"
               onChange={handleChange}
               value={values.Carbohidratos}
-            />
+            /> */}
 
             {/* --------------------------------------------------------------------------------- */}
-
+            {/* 
             <label>Azucares Totales</label>
             <input
               type="number"
@@ -162,18 +168,18 @@ function ProductForm() {
               placeholder="Ingresar un numero referente a los azucares totales del producto"
               onChange={handleChange}
               value={values.azucaresTotal}
-            />
+            /> */}
 
             {/* --------------------------------------------------------------------------------- */}
 
-            <label>Sodio</label>
+            {/* <label>Sodio</label>
             <input
               type="number"
               name="sodio"
               placeholder="Ingresar un numero referente a el sodio total del producto"
               onChange={handleChange}
               value={values.sodio}
-            />
+            /> */}
 
             {/* --------------------------------------------------------------------------------- */}
 

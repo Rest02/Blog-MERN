@@ -10,6 +10,10 @@ export const listProductoRequest = async () => {
   return axios.get("http://localhost:4000/productos");
 };
 
+export const updateProductoRequest = async (id, newfileds) => {
+  return axios.put(`http://localhost:4000/productos/update/${id}`, newfileds)
+}
+
 export const editProducto = async (id) => {
   return axios.get(`http://localhost:4000/productos/${id}`);
 };
@@ -32,6 +36,6 @@ export const listCategorias = async () => {
 
 //----------------------------------------------------------------------------------------------------
 
-export const  createInfNutricional = async () => {
-  return axios.post("http://localhost:4000/productos/infnutri")
+export const  createInfNutricionalapi = async ( id , inf) => {
+  return axios.post(`http://localhost:4000/productos/infnutri/${id}`, inf)
 }

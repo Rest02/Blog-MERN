@@ -5,7 +5,9 @@ import {
   editProducto,
   createProductoRequest,
   eliminarProducto,
-  listCategorias
+  listCategorias,
+  createInfNutricionalapi,
+  updateProductoRequest
 } from "../api/infodApi";
 import { useNavigate } from 'react-router'
 
@@ -83,6 +85,27 @@ export const InfoodContextProvider = ({ children }) => {
     }
   }
 
+  async function createInfNutricional(id ,values) {
+    try{
+      const response = await createInfNutricionalapi(id ,values)
+      console.log(response)
+    }catch(error){
+      console.log(error)
+    }
+  }
+
+  async function updateProduct (id , newFields){
+    try{
+      console.log("ID del producto:", id);
+      console.log("Nuevos campos:", newFields);
+      const response = await updateProductoRequest(id , newFields)
+      console.log(response)
+    }catch(error){
+      console.log(error)
+    }
+  }
+
+
   return (
     <InfoodContext.Provider
       value={{
@@ -94,7 +117,9 @@ export const InfoodContextProvider = ({ children }) => {
         getOneProducto,
         createProduct,
         deleteProducto,
-        getCategorias
+        getCategorias,
+        createInfNutricional,
+        updateProduct
       }}
     >
       {children}
