@@ -119,7 +119,6 @@ export const createInf = async (req, res) => {
       carbohidratos,
       azucaresTotal,
       sodio,
-      idProducto,
     } = req.body;
     const result = pool.query(
       "INSERT INTO infNutricional(energia, proteinas, grasaTotal, carbohidratos, azucaresTotal, sodio, idProducto) VALUES(?,?,?,?,?,?,?)",
@@ -130,7 +129,7 @@ export const createInf = async (req, res) => {
         carbohidratos,
         azucaresTotal,
         sodio,
-        idProducto,
+        id,
       ]
     );
     console.log(result);
@@ -141,7 +140,7 @@ export const createInf = async (req, res) => {
       carbohidratos,
       azucaresTotal,
       sodio,
-      idProducto,
+      id,
     });
   } catch (error) {
     return res.status(404).json({
