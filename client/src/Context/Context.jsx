@@ -7,11 +7,9 @@ import {
   eliminarProducto,
   listCategorias,
   createInfNutricionalapi,
-  updateProductoRequest
+  updateProductoRequest,
 } from "../api/infodApi";
-import { useNavigate } from 'react-router'
-
-
+import { useNavigate } from "react-router";
 
 export const InfoodContext = createContext();
 
@@ -27,8 +25,8 @@ export const useInfood = () => {
 export const InfoodContextProvider = ({ children }) => {
   const [productos, setProductos] = useState([]);
   const [empresa, setEmpresa] = useState([]);
-  const [categoria, setCategoria] = useState([])
-  const navigate = useNavigate()
+  const [categoria, setCategoria] = useState([]);
+  const navigate = useNavigate();
 
   async function cargarTareas() {
     const response = await listProductoRequest();
@@ -69,42 +67,47 @@ export const InfoodContextProvider = ({ children }) => {
     try {
       const response = await eliminarProducto(id);
       console.log(response);
-      navigate(0)
+      navigate(0);
     } catch (error) {
       console.log(error);
     }
   }
 
-
   async function getCategorias() {
-    try{
-      const response = await listCategorias()
-      setCategoria(response.data)
-    }catch(error){
-      console.log(error)
+    try {
+      const response = await listCategorias();
+      setCategoria(response.data);
+    } catch (error) {
+      console.log(error);
     }
   }
 
-  async function createInfNutricional(id ,values) {
-    try{
-      const response = await createInfNutricionalapi(id ,values)
-      console.log(response)
-    }catch(error){
-      console.log(error)
+  async function createInfNutricional(id, values) {
+    try {
+      const response = await createInfNutricionalapi(id, values);
+      console.log(response);
+    } catch (error) {
+      console.log(error);
     }
   }
 
-  async function updateProduct (id , newFields){
-    try{
+  async function updateProduct(id, values) {
+    try {
       console.log("ID del producto:", id);
-      console.log("Nuevos campos:", newFields);
-      const response = await updateProductoRequest(id , newFields)
-      console.log(response)
-    }catch(error){
-      console.log(error)
+      console.log("Nuevos campos:", values);
+      const formData = new FormData();
+      formData.append("nombreProducto", values.nombreProducto);
+      formData.append("descripcionProducto", values.descripcionProducto);
+      formData.append("colorProducto", values.colorProducto);
+      formData.append("imagen", values.imagen);
+      formData.append("idCategoria", values.idCategoria);
+
+      const response = await updateProductoRequest(id, formData);
+      console.log(response);
+    } catch (error) {
+      console.log(error);
     }
   }
-
 
   return (
     <InfoodContext.Provider
@@ -119,7 +122,7 @@ export const InfoodContextProvider = ({ children }) => {
         deleteProducto,
         getCategorias,
         createInfNutricional,
-        updateProduct
+        updateProduct,
       }}
     >
       {children}

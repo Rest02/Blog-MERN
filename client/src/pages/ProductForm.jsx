@@ -23,10 +23,10 @@ function ProductForm() {
       if (params.id) {
         const producto1 = await getOneProducto(params.id);
         setProducto({
-          nombreProducto: producto1[0].colorProducto,
+          nombreProducto: producto1[0].nombreProducto,
           descripcionProducto: producto1[0].descripcionProducto,
           colorProducto: producto1[0].colorProducto,
-          imagen: producto1[0].imagen,
+          imagen: producto1[0].imagen[0],
           idCategoria: producto1[0].idCategoria.toString(),
         })
         console.log(producto1)
@@ -47,15 +47,7 @@ function ProductForm() {
         enableReinitialize={true}
         onSubmit={async (values, { resetForm, setSubmitting }) => {
           if (params.id) {
-            // Si es una actualización, incluir la nueva imagen en el formData
-            const formData = new FormData();
-            formData.append("nombreProducto", values.nombreProducto);
-            formData.append("descripcionProducto", values.descripcionProducto);
-            formData.append("colorProducto", values.colorProducto);
-            formData.append("imagen", values.imagen); // Se mantendrá la imagen anterior si no se selecciona una nueva
-            formData.append("idCategoria", values.idCategoria);
-        
-            await updateProduct(params.id, formData);
+            await updateProduct(params.id, values);
           } else {
             await createProduct(values);
             resetForm();

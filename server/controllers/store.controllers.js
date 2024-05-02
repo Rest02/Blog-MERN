@@ -239,13 +239,32 @@ export const deleteProducto = async (req, res) => {
 
 export const updateProducto = async (req, res) => {
   try {
-    const { id } = req.params;
-    const { filename } = req.file; // Nueva imagen
-    const { nombreProducto, descripcionProducto, colorProducto, idCategoria } = req.body;
+    let filename;
+    if (req.file) {
+      filename = req.file.filename; // Si la imagen se actualiza
+    }
+    
+    const {
+      nombreProducto,
+      descripcionProducto,
+      colorProducto,
+      idCategoria,
+    } = req.body;
 
-    const result = await pool.query(
-      "UPDATE productos SET nombreProducto = ?, descripcionProducto = ?, colorProducto = ?, imagen = ?, idCategoria = ? WHERE idProducto = ?",
-      [nombreProducto, descripcionProducto, colorProducto, filename, idCategoria, id]
+    let updateFields = {
+      nombreProducto,
+      descripcionProducto,
+      colorProducto,
+      idCategoria,
+    };
+
+    if (filename) {
+      updateFields.imagen = filename;
+    }
+
+    const [result] = await pool.query(
+      "UPDATE productos SET ? WHERE idProducto = ?",
+      [updateFields, req.params.id]
     );
 
     res.json(result);
@@ -255,6 +274,8 @@ export const updateProducto = async (req, res) => {
     });
   }
 };
+
+
 
 export const updateInfNutricional = async (req, res) => {
   try {
