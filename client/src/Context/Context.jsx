@@ -8,7 +8,7 @@ import {
   listCategorias,
   createInfNutricionalapi,
   updateProductoRequest,
-  getProductInfNutricional
+  getProductInfNutricional,
 } from "../api/infodApi";
 import { useNavigate } from "react-router";
 
@@ -27,6 +27,8 @@ export const InfoodContextProvider = ({ children }) => {
   const [productos, setProductos] = useState([]);
   const [empresa, setEmpresa] = useState([]);
   const [categoria, setCategoria] = useState([]);
+  const [producto, setProducto] = useState([]);
+
   const navigate = useNavigate();
 
   async function cargarTareas() {
@@ -110,13 +112,14 @@ export const InfoodContextProvider = ({ children }) => {
     }
   }
 
-  async function mostrarProductInfNutricional(id){
-    try{
-      const response = await getProductInfNutricional(id)
-      console.log(response)
 
-    }catch(error){
-      console.log(error)
+  async function mostrarProductInfNutricional(id) {
+    try {
+      const response = await getProductInfNutricional(id);
+      setProducto(response.data)  // Devolver un array vacío si no se encuentra el producto
+    } catch (error) {
+      console.log(error);
+      return []; // Devolver un array vacío en caso de error
     }
   }
 
@@ -126,6 +129,7 @@ export const InfoodContextProvider = ({ children }) => {
         productos,
         empresa,
         categoria,
+        producto,
         cargarTareas,
         listarEmpresa,
         getOneProducto,
@@ -134,7 +138,7 @@ export const InfoodContextProvider = ({ children }) => {
         getCategorias,
         createInfNutricional,
         updateProduct,
-        mostrarProductInfNutricional
+        mostrarProductInfNutricional,
       }}
     >
       {children}

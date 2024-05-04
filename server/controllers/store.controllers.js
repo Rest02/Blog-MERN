@@ -175,28 +175,31 @@ export const getProductos = async (req, res) => {
 
 export const getProducto = async (req, res) => {
   try {
-    // QUERY PARA EL PRODUCTO POR ID y PARA LA INFORMACION NUTRICIONAL POR ID
-    const [result] = await pool.query(
-      "SELECT * FROM productos WHERE idProducto = ? ",
-      [req.params.id]
-    );
-    const [result2] = await pool.query(
-      "SELECT * FROM infNutricional WHERE idInfNutricional = ? ",
-      [req.params.id]
-    );
-    if (result.length >= 1) {
-      res.json(result.concat(result2));
+    const idProducto = req.params.id;
+    const query = `
+      SELECT p.*, i.*
+      FROM productos p
+      JOIN infNutricional i ON p.idProducto = i.idProducto
+      WHERE p.idProducto = ?
+    `;
+    const [result] = await pool.query(query, [idProducto]);
+
+    if (result) {
+      res.json(result);
+      console.log(result[0])
     } else {
-      res.json({
+      res.status(404).json({
         message: "No se encontro el producto deseado",
       });
     }
   } catch (error) {
-    return res.status(404).json({
-      message: error.message,
+    res.status(500).json({
+      message: "Hubo un error al procesar la solicitud",
+      error: error.message,
     });
   }
 };
+
 
 export const getCategoria = async (req, res) => {
   try{

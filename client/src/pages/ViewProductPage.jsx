@@ -4,17 +4,15 @@ import { useInfood } from "../Context/Context";
 
 function ViewProductPage() {
   const params = useParams();
-  const { mostrarProductInfNutricional } = useInfood();
+  const { mostrarProductInfNutricional, producto } = useInfood();
+
 
   useEffect(() => {
     async function listOneProduct() {
-      const response = await mostrarProductInfNutricional(params.id);
-      setProductos(response);
+      mostrarProductInfNutricional(params.id);
     }
     listOneProduct();
-  });
-
-  const [producto, setProductos] = useState([]);
+  }, []);
 
   return (
     <div>
@@ -23,6 +21,7 @@ function ViewProductPage() {
           <h1>{pro.nombreProducto}</h1>
           <h2>{pro.descripcionProducto}</h2>
           <p>{pro.colorProducto}</p>
+          <p>Proteinas : {pro.proteinas}</p>
           <img src={`http://localhost:4000/images/` + pro.imagen} alt="" />
         </div>
       ))}
