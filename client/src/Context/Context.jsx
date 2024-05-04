@@ -8,6 +8,7 @@ import {
   listCategorias,
   createInfNutricionalapi,
   updateProductoRequest,
+  getProductInfNutricional
 } from "../api/infodApi";
 import { useNavigate } from "react-router";
 
@@ -109,6 +110,16 @@ export const InfoodContextProvider = ({ children }) => {
     }
   }
 
+  async function mostrarProductInfNutricional(id){
+    try{
+      const response = await getProductInfNutricional(id)
+      console.log(response)
+
+    }catch(error){
+      console.log(error)
+    }
+  }
+
   return (
     <InfoodContext.Provider
       value={{
@@ -123,6 +134,7 @@ export const InfoodContextProvider = ({ children }) => {
         getCategorias,
         createInfNutricional,
         updateProduct,
+        mostrarProductInfNutricional
       }}
     >
       {children}

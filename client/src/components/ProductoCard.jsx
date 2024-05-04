@@ -7,7 +7,7 @@ function ProductoCard({ producto }) {
   const { deleteProducto } = useInfood()
  
   return (
-    <button>
+    <div>
       <h1>{producto.nombreProducto}</h1>
       <p>{producto.descripcionProducto}</p>
       <img src={`http://localhost:4000/images/` + producto.imagen} alt="" />
@@ -15,7 +15,7 @@ function ProductoCard({ producto }) {
         Editar
       </button>
       <button onClick={() => deleteProducto(producto.idProducto)}>Eliminar</button>
-    </button>
+    </div>
   );
 }
 

@@ -39,3 +39,9 @@ export const listCategorias = async () => {
 export const  createInfNutricionalapi = async ( id , inf) => {
   return axios.post(`http://localhost:4000/productos/infnutri/${id}`, inf)
 }
+
+//----------------------
+
+export const getProductInfNutricional = async ( id ) =>{
+  return axios.get(`http://localhost:4000/productos/${id}`)
+}

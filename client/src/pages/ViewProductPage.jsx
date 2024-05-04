@@ -4,11 +4,11 @@ import { useInfood } from "../Context/Context";
 
 function ViewProductPage() {
   const params = useParams();
-  const { getOneProducto } = useInfood();
+  const { mostrarProductInfNutricional } = useInfood();
 
   useEffect(() => {
     async function listOneProduct() {
-      const response = await getOneProducto(params.id);
+      const response = await mostrarProductInfNutricional(params.id);
       setProductos(response);
     }
     listOneProduct();
@@ -22,9 +22,8 @@ function ViewProductPage() {
         <div key={pro.idProducto}>
           <h1>{pro.nombreProducto}</h1>
           <h2>{pro.descripcionProducto}</h2>
-        <p>{pro.colorProducto}</p>
+          <p>{pro.colorProducto}</p>
           <img src={`http://localhost:4000/images/` + pro.imagen} alt="" />
-
         </div>
       ))}
     </div>

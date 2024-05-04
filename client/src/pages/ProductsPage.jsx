@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import ProductoCard from "../components/ProductoCard";
 import { useInfood } from "../Context/Context";
+import { useNavigate } from "react-router-dom";
 
 function ProductsList() {
   const { productos, cargarTareas } = useInfood();
+  const navigate = useNavigate()
 
   useEffect(() => {
     cargarTareas();
@@ -14,7 +16,9 @@ function ProductsList() {
       return <h1>No hay productos guardados aún...</h1>;
     } else {
       return productos.map((producto) => (
-        <ProductoCard producto={producto} key={producto.idProducto} />
+        <button onClick={()=> navigate(`http://localhost:4000/productos/${params.id}`)}>
+          <ProductoCard producto={producto} key={producto.idProducto} />
+        </button>
       ));
     }
   }
