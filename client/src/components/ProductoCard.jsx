@@ -9,7 +9,7 @@ function ProductoCard({ producto }) {
   console.log(params)
  
   return (
-    <button onClick={() => navigate(`/viewProduct/${producto.idProducto}`)}>
+    <div onClick={() => navigate(`/viewProduct/${producto.idProducto}`)}>
       <h1>{producto.nombreProducto}</h1>
       <p>{producto.descripcionProducto}</p>
       <img src={`http://localhost:4000/images/` + producto.imagen} alt="" />
@@ -17,8 +17,8 @@ function ProductoCard({ producto }) {
         Editar
       </button>
       <button onClick={() => deleteProducto(producto.idProducto)}>Eliminar</button>
-      <button onClick={()=> navigate(`/viewProduct/${producto.idProducto.toString()}`)}>Ver Producto</button>
-    </button>
+      {/* <button onClick={()=> navigate(`/viewProduct/${producto.idProducto.toString()}`)}>Ver Producto</button> */}
+    </div>
   );
 }
 
