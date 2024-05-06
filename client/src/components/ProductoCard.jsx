@@ -17,7 +17,6 @@ function ProductoCard({ producto }) {
         Editar
       </button>
       <button onClick={() => deleteProducto(producto.idProducto)}>Eliminar</button>
-      {/* <button onClick={()=> navigate(`/viewProduct/${producto.idProducto.toString()}`)}>Ver Producto</button> */}
     </div>
   );
 }
