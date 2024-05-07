@@ -2,7 +2,7 @@ import { Form, Formik, validateYupSchema } from "formik";
 import { useNavigate, useParams } from "react-router-dom";
 import { useInfood } from "../Context/Context";
 import { useEffect, useState } from "react";
-
+import Formik2 from '../components/Formik2'
 function ProductForm() {
   const navigate = useNavigate();
   const params = useParams();
@@ -190,6 +190,7 @@ function ProductForm() {
           </Form>
         )}
       </Formik>
+      <Formik2/>
     </div>
   );
 }
