@@ -3,14 +3,13 @@ import { pool } from "../db.js";
 import { upload } from "../multer.js";
 import router from "../routes/store.routes.js";
 
-
 //------------------------------------- METODOS POST --------------------------------------------
 
 // APARTADO CREAR EMPRESA
 
 export const createEmpresa = async (req, res) => {
   try {
-    const { filename } = req.file
+    const { filename } = req.file;
     const {
       rutEmpresa,
       nombreEmpresa,
@@ -47,36 +46,31 @@ export const createEmpresa = async (req, res) => {
 // APARTADO CREAR PRODUCTO
 export const createProducto = async (req, res) => {
   // try {
-    const rutEmpresa = 211251026;
-    const { filename } = req.file;
-    const {
-      nombreProducto,
-      descripcionProducto,
-      colorProducto,
-      idCategoria,
-    } = req.body;
-    
+  const rutEmpresa = 211251026;
+  const { filename } = req.file;
+  const { nombreProducto, descripcionProducto, colorProducto, idCategoria } =
+    req.body;
 
-    const result = await pool.query(
-      "INSERT INTO productos(nombreProducto, descripcionProducto, colorProducto, imagen, rutEmpresa, idCategoria) VALUES(?,?,?,?,?,?)",
-      [
-        nombreProducto,
-        descripcionProducto,
-        colorProducto,
-        filename,
-        rutEmpresa,
-        idCategoria,
-      ]
-    );
-    console.log(result);
-    res.json({
+  const result = await pool.query(
+    "INSERT INTO productos(nombreProducto, descripcionProducto, colorProducto, imagen, rutEmpresa, idCategoria) VALUES(?,?,?,?,?,?)",
+    [
       nombreProducto,
       descripcionProducto,
       colorProducto,
       filename,
       rutEmpresa,
       idCategoria,
-    });
+    ]
+  );
+  console.log(result);
+  res.json({
+    nombreProducto,
+    descripcionProducto,
+    colorProducto,
+    filename,
+    rutEmpresa,
+    idCategoria,
+  });
   // } catch (error) {
   //   return res.status(404).json({
   //     message: error.message,
@@ -110,8 +104,8 @@ export const createCategoria = async (req, res) => {
 
 export const createInf = async (req, res) => {
   try {
-    const {id} = req.params 
-    console.log(id)
+    const { id } = req.params;
+    console.log(id);
     const {
       energia,
       proteinas,
@@ -122,15 +116,7 @@ export const createInf = async (req, res) => {
     } = req.body;
     const result = pool.query(
       "INSERT INTO infNutricional(energia, proteinas, grasaTotal, carbohidratos, azucaresTotal, sodio, idProducto) VALUES(?,?,?,?,?,?,?)",
-      [
-        energia,
-        proteinas,
-        grasaTotal,
-        carbohidratos,
-        azucaresTotal,
-        sodio,
-        id,
-      ]
+      [energia, proteinas, grasaTotal, carbohidratos, azucaresTotal, sodio, id]
     );
     console.log(result);
     res.json({
@@ -173,6 +159,19 @@ export const getProductos = async (req, res) => {
   }
 };
 
+export const getOneProduct = async (req, res) => {
+  try {
+    const [result] = await pool.query("SELECT * FROM productos where idProducto = ?", [
+      req.params.id,
+    ]);
+    res.json(result);
+  } catch (error) {
+    return res.status(400).json({
+      message: error.message,
+    });
+  }
+};
+
 export const getProducto = async (req, res) => {
   try {
     const idProducto = req.params.id;
@@ -186,7 +185,7 @@ export const getProducto = async (req, res) => {
 
     if (result) {
       res.json(result);
-      console.log(result[0])
+      console.log(result[0]);
     } else {
       res.status(404).json({
         message: "No se encontro el producto deseado",
@@ -200,17 +199,16 @@ export const getProducto = async (req, res) => {
   }
 };
 
-
 export const getCategoria = async (req, res) => {
-  try{
-    const [result] = await pool.query("SELECT * FROM categoria")
-    res.json(result)
-  }catch(error){
+  try {
+    const [result] = await pool.query("SELECT * FROM categoria");
+    res.json(result);
+  } catch (error) {
     return res.status(404).json({
       message: error.message,
     });
   }
-}
+};
 //-------------------------------------------------------------------------------------------------
 
 //------------------------------------ METODO DELETE ----------------------------------------------
@@ -246,13 +244,9 @@ export const updateProducto = async (req, res) => {
     if (req.file) {
       filename = req.file.filename; // Si la imagen se actualiza
     }
-    
-    const {
-      nombreProducto,
-      descripcionProducto,
-      colorProducto,
-      idCategoria,
-    } = req.body;
+
+    const { nombreProducto, descripcionProducto, colorProducto, idCategoria } =
+      req.body;
 
     let updateFields = {
       nombreProducto,
@@ -277,8 +271,6 @@ export const updateProducto = async (req, res) => {
     });
   }
 };
-
-
 
 export const updateInfNutricional = async (req, res) => {
   try {
