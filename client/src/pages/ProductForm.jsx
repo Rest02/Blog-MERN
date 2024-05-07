@@ -1,5 +1,4 @@
 import { Form, Formik, validateYupSchema } from "formik";
-// import { createProductoRequest } from "../api/infodApi";
 import { useNavigate, useParams } from "react-router-dom";
 import { useInfood } from "../Context/Context";
 import { useEffect, useState } from "react";
@@ -8,7 +7,7 @@ function ProductForm() {
   const navigate = useNavigate();
   const params = useParams();
 
-  const {getOneProducto, createProduct, updateProduct } = useInfood();
+  const {getOneProductoIndv, createProduct, updateProduct } = useInfood();
 
   const [producto, setProducto] = useState({
     nombreProducto: "",
@@ -23,7 +22,7 @@ function ProductForm() {
   useEffect(() => {
     async function sendProducto() {
       if (params.id) {
-        const producto1 = await getOneProducto(params.id);
+        const producto1 = await getOneProductoIndv(params.id);
         setProducto({
           nombreProducto: producto1[0].nombreProducto,
           descripcionProducto: producto1[0].descripcionProducto,
@@ -118,7 +117,7 @@ function ProductForm() {
 
             {/* --------------------------------------------------------------------------------- */}
 
-            <h1>Información Nutricional</h1>
+            {/* <h1>Información Nutricional</h1>
             <label>Energia</label>
             <input
               type="number"
@@ -126,62 +125,62 @@ function ProductForm() {
               placeholder="Ingresar un numero referente a la energia del producto"
               onChange={handleChange}
               value={values.Energia}
-            />
+            /> */}
 
             {/* --------------------------------------------------------------------------------- */}
 
-            <label>Proteinas</label>
+            {/* <label>Proteinas</label>
             <input
               type="number"
               name="proteinas"
               placeholder="Ingresar un numero referente a la proteina del producto"
               onChange={handleChange}
               value={values.proteinas}
-            />
+            /> */}
 
             {/* --------------------------------------------------------------------------------- */}
 
-            <label>Grasa Total</label>
+            {/* <label>Grasa Total</label>
             <input
               type="number"
               name="grasaTotal"
               placeholder="Ingresar un numero referente a la Grasa total del producto"
               onChange={handleChange}
               value={values.grasaTotal}
-            />
+            /> */}
 
             {/* --------------------------------------------------------------------------------- */}
 
-            <label>Carbohidratos</label>
+            {/* <label>Carbohidratos</label>
             <input
               type="number"
               name="Carbohidratos"
               placeholder="Ingresar un numero referente a los carbohidratos totales del producto"
               onChange={handleChange}
               value={values.Carbohidratos}
-            />
+            /> */}
 
             {/* --------------------------------------------------------------------------------- */}
             
-            <label>Azucares Totales</label>
+            {/* <label>Azucares Totales</label>
             <input
               type="number"
               name="azucaresTotal"
               placeholder="Ingresar un numero referente a los azucares totales del producto"
               onChange={handleChange}
               value={values.azucaresTotal}
-            />
+            /> */}
 
             {/* --------------------------------------------------------------------------------- */}
 
-            <label>Sodio</label>
+            {/* <label>Sodio</label>
             <input
               type="number"
               name="sodio"
               placeholder="Ingresar un numero referente a el sodio total del producto"
               onChange={handleChange}
               value={values.sodio}
-            />
+            /> */}
 
             {/* --------------------------------------------------------------------------------- */}
 

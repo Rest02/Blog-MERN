@@ -9,6 +9,7 @@ import {
   createInfNutricionalapi,
   updateProductoRequest,
   getProductInfNutricional,
+  getOneProducto,
 } from "../api/infodApi";
 import { useNavigate } from "react-router";
 
@@ -41,14 +42,14 @@ export const InfoodContextProvider = ({ children }) => {
     setEmpresa(response.data);
   }
 
-  async function getOneProducto(id) {
-    try {
-      const response = await editProducto(id);
-      return response.data;
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  // async function getOneProducto(id) {
+  //   try {
+  //     const response = await editProducto(id);
+  //     return response.data;
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
 
   async function createProduct(values) {
     try {
@@ -112,14 +113,22 @@ export const InfoodContextProvider = ({ children }) => {
     }
   }
 
-
   async function mostrarProductInfNutricional(id) {
     try {
       const response = await getProductInfNutricional(id);
-      setProducto(response.data)  // Devolver un array vacío si no se encuentra el producto
+      setProducto(response.data); // Devolver un array vacío si no se encuentra el producto
     } catch (error) {
       console.log(error);
       return []; // Devolver un array vacío en caso de error
+    }
+  }
+
+  async function getOneProductoIndv(id) {
+    try {
+      const response = await getOneProducto(id);
+      return response.data;
+    } catch (error) {
+      return null;
     }
   }
 
@@ -139,6 +148,7 @@ export const InfoodContextProvider = ({ children }) => {
         createInfNutricional,
         updateProduct,
         mostrarProductInfNutricional,
+        getOneProductoIndv,
       }}
     >
       {children}

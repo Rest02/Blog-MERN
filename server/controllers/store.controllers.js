@@ -160,16 +160,17 @@ export const getProductos = async (req, res) => {
 };
 
 export const getOneProduct = async (req, res) => {
-  try {
+  // try {
     const [result] = await pool.query("SELECT * FROM productos where idProducto = ?", [
       req.params.id,
     ]);
     res.json(result);
-  } catch (error) {
-    return res.status(400).json({
-      message: error.message,
-    });
-  }
+    console.log(result)
+  // } catch (error) {
+  //   return res.status(400).json({
+  //     message: error.message,
+  //   });
+  // }
 };
 
 export const getProducto = async (req, res) => {
