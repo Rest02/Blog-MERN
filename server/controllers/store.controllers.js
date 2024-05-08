@@ -162,6 +162,7 @@ export const getProductos = async (req, res) => {
 export const getInfNutricional = async (req, res) => {
   const [result] = await pool.query("SELECT * FROM infNutricional WHERE idProducto = ?",[req.params.id])
   res.json(result)
+  console.log(result)
 }
 
 export const getOneProduct = async (req, res) => {

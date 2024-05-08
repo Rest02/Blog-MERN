@@ -138,9 +138,8 @@ export const InfoodContextProvider = ({ children }) => {
 
   async function getOneInfNutricional(id){
     try{
-      response = await getInfNutricionalOnly(id)
+      const response = await getInfNutricionalOnly(id)
       setInfNutricional(response.data)
-
     }catch(error){
       console.log(error)
     }

@@ -5,24 +5,26 @@ import CardComponent1 from "../components/CardComponent1";
 
 function ViewProductPage() {
   const params = useParams();
-  const { getOneProductoIndv, producto } = useInfood();
+  const { getOneProductoIndv, producto, getOneInfNutricional, infNutricional } =
+    useInfood();
 
   useEffect(() => {
-
     async function listOneProduct() {
       getOneProductoIndv(params.id);
     }
 
-
-    
+    async function listInfNutricional() {
+      getOneInfNutricional(params.id);
+    }
 
     listOneProduct();
+    listInfNutricional();
   }, []);
 
   return (
     <div>
       <CardComponent1 producto={producto} />
-      <h1>{params.id ? "Editando producto" : "Creando producto"}</h1>
+      <h1>{infNutricional.length > 0 ? "Información Nutricional" : "El producto aún no contiene información nutrucional"}</h1>
     </div>
   );
 }
