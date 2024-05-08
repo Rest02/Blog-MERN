@@ -2,10 +2,9 @@ import axios from "axios";
 
 //----------------------------------------------------------------------------------------------------
 
-
 export const getInfNutricionalOnly = async (id) => {
-  return axios.get(`http://localhost:4000/productos/${id}`)
-}
+  return axios.get(`http://localhost:4000/productos/${id}`);
+};
 
 export const getOneProducto = async (id) => {
   return axios.get(`http://localhost:4000/producto/${id}`);
