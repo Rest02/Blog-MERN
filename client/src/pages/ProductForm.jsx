@@ -115,6 +115,7 @@ function ProductForm() {
               <option value="3">Categoria 3</option>
             </select>
 
+            {/* --------------------------------------------------------------------------------- */}
 
 
             <button type="submit" disabled={isSubmitting}>

@@ -5,12 +5,12 @@ import CardComponent1 from '../components/CardComponent1'
 
 function ViewProductPage() {
   const params = useParams();
-  const { mostrarProductInfNutricional, producto } = useInfood();
+  const { getOneProductoIndv, producto } = useInfood();
 
 
   useEffect(() => {
     async function listOneProduct() {
-      mostrarProductInfNutricional(params.id);
+      getOneProductoIndv(params.id);
     }
     listOneProduct();
   }, []);

@@ -126,12 +126,13 @@ export const InfoodContextProvider = ({ children }) => {
   async function getOneProductoIndv(id) {
     try {
       const response = await getOneProducto(id);
-      return response.data;
+      setProducto(response.data)
     } catch (error) {
       return null;
     }
   }
 
+  
   return (
     <InfoodContext.Provider
       value={{
