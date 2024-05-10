@@ -20,7 +20,7 @@ router.post("/productos", upload.single("imagen"), createProducto)
 
 // ---------CREAR INFORMACION NUTRICIONAL ---------
 
-router.post("/productos/infnutri/:id", createInf)
+router.post("/infnutri/:id", createInf)
 
 //--------------------------------------------------
 

@@ -2,6 +2,10 @@ import axios from "axios";
 
 //----------------------------------------------------------------------------------------------------
 
+export const postInfNutricional = async (id) => {
+  return axios.post(`http://localhost:4000/productos/infnutri/${id}`);
+};
+
 export const getInfNutricionalOnly = async (id) => {
   return axios.get(`http://localhost:4000/productos/${id}`);
 };
