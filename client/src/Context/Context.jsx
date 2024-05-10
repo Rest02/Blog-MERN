@@ -146,7 +146,7 @@ export const InfoodContextProvider = ({ children }) => {
     }
   }
 
-  async function postInfNutricional(id, values){
+  async function creandoInformacionNutricional(id, values){
     try{
       const response = await postInfNutricional(id , values)
       console.log(response.data)
@@ -174,7 +174,7 @@ export const InfoodContextProvider = ({ children }) => {
         mostrarProductInfNutricional,
         getOneProductoIndv,
         getOneInfNutricional,
-        postInfNutricional
+        creandoInformacionNutricional
       }}
     >
       {children}
