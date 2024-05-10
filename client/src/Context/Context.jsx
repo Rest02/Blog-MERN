@@ -32,6 +32,7 @@ export const InfoodContextProvider = ({ children }) => {
   const [categoria, setCategoria] = useState([]);
   const [producto, setProducto] = useState([]);
   const [infNutricional, setInfNutricional] = useState([])
+  
 
 
   const navigate = useNavigate();
@@ -130,9 +131,10 @@ export const InfoodContextProvider = ({ children }) => {
   async function getOneProductoIndv(id) {
     try {
       const response = await getOneProducto(id);
-      setProducto(response.data)
+      setProducto(response.data);
+      console.log(response.data)
     } catch (error) {
-      return null;
+      console.log(error)
     }
   }
 

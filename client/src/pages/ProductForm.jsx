@@ -2,14 +2,15 @@ import { Form, Formik, validateYupSchema } from "formik";
 import { useNavigate, useParams } from "react-router-dom";
 import { useInfood } from "../Context/Context";
 import { useEffect, useState } from "react";
-import Formik2 from '../components/Formik2'
+
 function ProductForm() {
   const navigate = useNavigate();
   const params = useParams();
 
-  const {getOneProductoIndv, createProduct, updateProduct } = useInfood();
+  const { getOneProductoIndv, createProduct, updateProduct, producto } =
+    useInfood();
 
-  const [producto, setProducto] = useState({
+  const [productoBase, setProductoBase] = useState({
     nombreProducto: "",
     descripcionProducto: "",
     colorProducto: "",
@@ -17,34 +18,35 @@ function ProductForm() {
     idCategoria: "1",
   });
 
-  
-
   useEffect(() => {
     async function sendProducto() {
       if (params.id) {
-        const producto1 = await getOneProductoIndv(params.id);
-        setProducto({
-          nombreProducto: producto1[0].nombreProducto,
-          descripcionProducto: producto1[0].descripcionProducto,
-          colorProducto: producto1[0].colorProducto,
-          imagen: producto1[0].imagen[0],
-          idCategoria: producto1[0].idCategoria.toString(),
-        })
-        console.log(producto1)
+        await getOneProductoIndv(params.id);
       }
     }
-
-    sendProducto();
-    console.log(producto)
-  }, []);
-
   
+    sendProducto();
+  }, []);
+  
+  useEffect(() => {
+    if (producto && producto.length > 0) {
+      setProductoBase({
+        nombreProducto: producto[0].nombreProducto,
+        descripcionProducto: producto[0].descripcionProducto,
+        colorProducto: producto[0].colorProducto,
+        imagen: producto[0].imagen,
+        idCategoria: producto[0].idCategoria,
+      });
+    }
+  }, [producto]);
+  
+
   return (
     <div>
       <h1>{params.id ? "Editando producto" : "Creando producto"}</h1>
 
       <Formik
-        initialValues={producto}
+        initialValues={productoBase}
         enableReinitialize={true}
         onSubmit={async (values, { resetForm, setSubmitting }) => {
           if (params.id) {
@@ -117,14 +119,12 @@ function ProductForm() {
 
             {/* --------------------------------------------------------------------------------- */}
 
-
             <button type="submit" disabled={isSubmitting}>
               {isSubmitting ? "Saving..." : "Save"}
             </button>
           </Form>
         )}
       </Formik>
-      <Formik2/>
     </div>
   );
 }
