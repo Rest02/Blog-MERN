@@ -9,7 +9,7 @@ import EditEmpresa from "./pages/EditEmpresa";
 import { InfoodContextProvider } from "./Context/Context";
 import CategoriasPage from "./pages/CategoriasPage";
 import ViewProductPage from "./pages/ViewProductPage";
-// import InfNutricionalPage from './pages/InfNutricionalPage'
+import InfNutricionalPage from './pages/InfNutricionalPage'
 
 function App() {
   return (
@@ -24,6 +24,7 @@ function App() {
         <Route path="/editEmpresa/:id" element={<EditEmpresa />}></Route>
         <Route path="/categorias" element={<CategoriasPage />}></Route>
         <Route path="/viewProduct/:id" element={<ViewProductPage />}></Route>
+        <Route path="/infNutricional/:id" element={<InfNutricionalPage />}></Route>
         <Route path="*" element={<NotFound></NotFound>}></Route>
       </Routes>
     </InfoodContextProvider>
