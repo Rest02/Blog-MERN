@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useInfood } from "../Context/Context";
 import CardComponent1 from "../components/CardComponent1";
+import { useNavigate } from 'react-router-dom'
 
 function ViewProductPage() {
+  const navigate = useNavigate()
   const params = useParams();
   const { getOneProductoIndv, producto, getOneInfNutricional, infNutricional } =
     useInfood();
@@ -27,11 +29,14 @@ function ViewProductPage() {
       {infNutricional.length > 0 ? (
         <h1>Informacion Nutricional</h1>
       ) : (
-        <button
-          onClick={() => navigate(`/infNutricional/${producto.idProducto}`)}
-        >
-          Crear InfNutricional
-        </button>
+        <div>
+          <button
+            onClick={() => navigate(`/infNutricional/${producto.idProducto}`)}
+          >
+            Crear InfNutricional
+          </button>
+          <button>Editar Informacion Nutricional</button>
+        </div>
       )}
     </div>
   );
