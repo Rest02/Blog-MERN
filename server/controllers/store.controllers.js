@@ -103,7 +103,7 @@ export const createCategoria = async (req, res) => {
 // APARTADO CREAR INF NUTRICIONAL
 
 export const createInf = async (req, res) => {
-  try {
+  // try {
     const { id } = req.params;
     console.log(id);
     const {
@@ -128,11 +128,11 @@ export const createInf = async (req, res) => {
       sodio,
       id,
     });
-  } catch (error) {
-    return res.status(404).json({
-      message: error.message,
-    });
-  }
+  // } catch (error) {
+  //   return res.status(404).json({
+  //     message: error.message,
+  //   });
+  // }
 };
 
 //-------------------------------------- METODO GET -----------------------------------------------

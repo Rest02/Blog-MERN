@@ -1,8 +1,17 @@
 import React from "react";
 import { Formik, Form } from "formik";
+import { useParams } from 'react-router-dom'
+import { useInfood } from '../Context/Context'
 
 function InfNutricionalPage() {
-  return (
+
+    const {postInfNutricional} = useInfood()
+
+    const params = useParams()
+    console.log(params.id)
+  
+  
+    return (
     <div>
       <Formik
         initialValues={{
@@ -14,8 +23,8 @@ function InfNutricionalPage() {
           Sodio: "",
         }}
 
-        onSubmit={(values)=>{
-            console.log(values)
+        onSubmit={async (values)=>{
+            postInfNutricional(params.id, values)
         }}
       >
         {({ handleChange, handleSubmit }) => (
