@@ -24,7 +24,15 @@ function ViewProductPage() {
   return (
     <div>
       <CardComponent1 producto={producto} />
-      <h1>{infNutricional.length > 0 ? "Información Nutricional" : "El producto aún no contiene información nutrucional"}</h1>
+      {infNutricional.length > 0 ? (
+        <h1>Informacion Nutricional</h1>
+      ) : (
+        <button
+          onClick={() => navigate(`/infNutricional/${producto.idProducto}`)}
+        >
+          Crear InfNutricional
+        </button>
+      )}
     </div>
   );
 }

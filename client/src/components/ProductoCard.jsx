@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useInfood } from "../Context/Context";
 
@@ -7,6 +7,7 @@ function ProductoCard({ producto }) {
   const { deleteProducto } = useInfood();
   const params = useParams();
   console.log(params);
+
 
   return (
     <div>
