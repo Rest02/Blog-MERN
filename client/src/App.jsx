@@ -25,6 +25,9 @@ function App() {
         <Route path="/categorias" element={<CategoriasPage />}></Route>
         <Route path="/viewProduct/:id" element={<ViewProductPage />}></Route>
         <Route path="/infNutricional/:id" element={<InfNutricionalPage />}></Route>
+        <Route path="/EditarinfNutricional/:id" element={<InfNutricionalPage />}></Route>
+
+        
         <Route path="*" element={<NotFound></NotFound>}></Route>
       </Routes>
     </InfoodContextProvider>
