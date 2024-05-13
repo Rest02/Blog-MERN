@@ -1,13 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Formik, Form } from "formik";
 import { useParams } from "react-router-dom";
 import { useInfood } from "../Context/Context";
 
 function InfNutricionalPage() {
-  const { creandoInformacionNutricional } = useInfood();
+  const { creandoInformacionNutricional, getOneInfNutricional } = useInfood();
 
   const params = useParams();
   console.log(params.id);
+
+  useEffect(() => {
+    async function loadProducto(){
+      if (params.id) {
+        const infNutri = await getOneInfNutricional(params.id)
+        console.log(infNutri)
+      }
+    }
+    loadProducto()
+  }, []);
 
   return (
     <div>
@@ -59,5 +69,3 @@ function InfNutricionalPage() {
 }
 
 export default InfNutricionalPage;
-
-
