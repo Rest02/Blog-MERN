@@ -11,7 +11,8 @@ import {
   getProductInfNutricional,
   getOneProducto,
   getInfNutricionalOnly,
-  postInfNutricional
+  postInfNutricional,
+  putInfNutricional
 } from "../api/infodApi";
 import { useNavigate } from "react-router";
 
@@ -157,6 +158,15 @@ export const InfoodContextProvider = ({ children }) => {
     }
   }
 
+  async function updateInfNutricional(id, values){
+    try{
+      const response = putInfNutricional(id, values)
+      console.log(response)
+    }catch(error){
+      console.log(error)
+    }
+  }
+
   return (
     <InfoodContext.Provider
       value={{
@@ -176,7 +186,8 @@ export const InfoodContextProvider = ({ children }) => {
         mostrarProductInfNutricional,
         getOneProductoIndv,
         getOneInfNutricional,
-        creandoInformacionNutricional
+        creandoInformacionNutricional,
+        updateInfNutricional
       }}
     >
       {children}
