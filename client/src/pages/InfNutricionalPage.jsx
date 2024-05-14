@@ -12,7 +12,6 @@ function InfNutricionalPage() {
   } = useInfood();
 
   const params = useParams();
-  console.log(params.id);
 
   const [informacionNutricional, setinformacionNutricional] = useState({
     energia: "",
@@ -27,24 +26,26 @@ function InfNutricionalPage() {
     async function loadProducto() {
       if (params.id) {
         await getOneInfNutricional(params.id);
-        console.log("inf nutricional" , infNutricional);
       }
     }
     loadProducto();
-  }, [params.id]);
+  }, []);
 
   useEffect(() => {
+    console.log(infNutricional);
     if (infNutricional && infNutricional.length > 0) {
-      setinformacionNutricional({
+      const nutricionalData = {
         energia: infNutricional[0].energia,
         proteinas: infNutricional[0].proteinas,
-        grasasTotales: infNutricional[0].grasasTotales,
+        grasasTotales: infNutricional[0].grasaTotal,
         carbohidratos: infNutricional[0].carbohidratos,
-        azucaresTotales: infNutricional[0].azucaresTotales,
+        azucaresTotales: infNutricional[0].azucaresTotal,
         sodio: infNutricional[0].sodio,
-      });
+      };
+      console.log(nutricionalData)
+      setinformacionNutricional(nutricionalData);
     }
-  },[infNutricional]);
+  }, [infNutricional]);
 
   return (
     <div>
@@ -53,36 +54,40 @@ function InfNutricionalPage() {
         enableReinitialize={true}
         onSubmit={async (values) => {
           if (params.id) {
-            await updateInfNutricional(params.id, values);
-          } else {
+            // await updateInfNutricional(params.id, values);
             await creandoInformacionNutricional(params.id, values);
           }
         }}
-        
       >
-        {({ handleChange, handleSubmit }) => (
-          <Form onSubmit={handleSubmit}>
+        {({ handleChange, handleSubmit, values }) => (
+          <Form encType="multipart/form-data" onSubmit={handleSubmit}>
             <label>Energia</label>
-            <input type="number" name="energia" onChange={handleChange} />
+            <input type="number" name="energia" onChange={handleChange} 
+            value={values.energia}/>
 
             <label>Proteinas</label>
-            <input type="number" name="proteinas" onChange={handleChange} />
+            <input type="number" name="proteinas" onChange={handleChange}
+            value={values.proteinas} />
 
             <label>Grasas Totales</label>
-            <input type="number" name="grasasTotales" onChange={handleChange} />
+            <input type="number" name="grasasTotales" onChange={handleChange}
+            value={values.grasasTotales} />
 
             <label>Carbohidratos</label>
-            <input type="number" name="carbohidratos" onChange={handleChange} />
+            <input type="number" name="carbohidratos" onChange={handleChange} 
+            value={values.carbohidratos}/>
 
             <label>Azucares Totales</label>
             <input
               type="number"
               name="azucaresTotales"
               onChange={handleChange}
+              value={values.azucaresTotales}
             />
 
             <label>Sodio</label>
-            <input type="number" name="sodio" onChange={handleChange} />
+            <input type="number" name="sodio" onChange={handleChange} 
+            value={values.sodio}/>
 
             {/* Para que funcione es importante poner el id del producto , aún no lo he echo */}
 
