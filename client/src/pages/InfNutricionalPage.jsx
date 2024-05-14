@@ -4,34 +4,49 @@ import { useParams } from "react-router-dom";
 import { useInfood } from "../Context/Context";
 
 function InfNutricionalPage() {
-  const { creandoInformacionNutricional, getOneInfNutricional } = useInfood();
+  const { creandoInformacionNutricional, getOneInfNutricional, infNutricional } = useInfood();
 
   const params = useParams();
   console.log(params.id);
 
+  const [informacionNutricional, setinformacionNutricional] = useState([])
+
   useEffect(() => {
     async function loadProducto(){
       if (params.id) {
-        const infNutri = await getOneInfNutricional(params.id)
-        console.log(infNutri)
+        await getOneInfNutricional(params.id)
+        console.log(infNutricional)
       }
     }
     loadProducto()
   }, []);
 
+  useEffect(()=>{
+    if(informacionNutricional && infNutricional > 0){
+      setinformacionNutricional({
+        energia: infNutricional.energia,
+        proteinas: infNutricional.proteinas,
+        grasasTotales: infNutricional.proteinas,
+        carbohidratos: infNutricional.carbohidratos,
+        azucaresTotales: infNutricional.carbohidratos,
+        sodio: infNutricional.sodio
+      })
+    }
+
+  })
+
   return (
     <div>
       <Formik
         initialValues={{
-          energia: "",
-          proteinas: "",
-          grasasTotales: "",
-          carbohidratos: "",
-          azucaresTotales: "",
-          sodio: "",
+          informacionNutricional
         }}
         onSubmit={async (values) => {
-          creandoInformacionNutricional(params.id, values);
+          if(params.id){
+
+          }else{
+            creandoInformacionNutricional(params.id, values);
+          }
         }}
       >
         {({ handleChange, handleSubmit }) => (
