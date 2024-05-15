@@ -53,8 +53,9 @@ function InfNutricionalPage() {
         initialValues={informacionNutricional}
         enableReinitialize={true}
         onSubmit={async (values) => {
-          if (params.id) {
-            // await updateInfNutricional(params.id, values);
+          if (infNutricional.length>0) {
+            await updateInfNutricional(params.id, values);
+          }else{
             await creandoInformacionNutricional(params.id, values);
           }
         }}
