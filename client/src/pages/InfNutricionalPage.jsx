@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Formik, Form } from "formik";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useInfood } from "../Context/Context";
+
 
 function InfNutricionalPage() {
   const {
@@ -12,6 +13,7 @@ function InfNutricionalPage() {
   } = useInfood();
 
   const params = useParams();
+  const navigate = useNavigate()
 
   const [informacionNutricional, setinformacionNutricional] = useState({
     energia: "",
@@ -55,8 +57,13 @@ function InfNutricionalPage() {
         onSubmit={async (values) => {
           if (infNutricional.length>0) {
             await updateInfNutricional(params.id, values);
+            alert("Has actualizado los valores de Inf Nutricional")
+            // navigate(`/EditarinfNutricional/${params.id}`)
+
           }else{
             await creandoInformacionNutricional(params.id, values);
+            navigate("/")
+
           }
         }}
       >
