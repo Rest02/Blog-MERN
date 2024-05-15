@@ -16,9 +16,9 @@ function InfNutricionalPage() {
   const [informacionNutricional, setinformacionNutricional] = useState({
     energia: "",
     proteinas: "",
-    grasasTotales: "",
+    grasaTotal: "",
     carbohidratos: "",
-    azucaresTotales: "",
+    azucaresTotal: "",
     sodio: "",
   });
 
@@ -37,9 +37,9 @@ function InfNutricionalPage() {
       const nutricionalData = {
         energia: infNutricional[0].energia,
         proteinas: infNutricional[0].proteinas,
-        grasasTotales: infNutricional[0].grasaTotal,
+        grasaTotal: infNutricional[0].grasaTotal,
         carbohidratos: infNutricional[0].carbohidratos,
-        azucaresTotales: infNutricional[0].azucaresTotal,
+        azucaresTotal: infNutricional[0].azucaresTotal,
         sodio: infNutricional[0].sodio,
       };
       console.log(nutricionalData)
@@ -70,8 +70,8 @@ function InfNutricionalPage() {
             value={values.proteinas} />
 
             <label>Grasas Totales</label>
-            <input type="number" name="grasasTotales" onChange={handleChange}
-            value={values.grasasTotales} />
+            <input type="number" name="grasaTotal" onChange={handleChange}
+            value={values.grasaTotal} />
 
             <label>Carbohidratos</label>
             <input type="number" name="carbohidratos" onChange={handleChange} 
@@ -80,9 +80,9 @@ function InfNutricionalPage() {
             <label>Azucares Totales</label>
             <input
               type="number"
-              name="azucaresTotales"
+              name="azucaresTotal"
               onChange={handleChange}
-              value={values.azucaresTotales}
+              value={values.azucaresTotal}
             />
 
             <label>Sodio</label>
