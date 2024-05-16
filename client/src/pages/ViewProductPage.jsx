@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { useInfood } from "../Context/Context";
 import CardComponent1 from "../components/CardComponent1";
 import { useNavigate } from "react-router-dom";
+import InfNutricionalCard from "../components/InfNutricionalCard";
 
 function ViewProductPage() {
   const navigate = useNavigate();
@@ -29,16 +30,7 @@ function ViewProductPage() {
       {infNutricional && infNutricional.length > 0 ? (
         <div>
           <h1>Informacion Nutricional</h1>
-          {infNutricional.map((inf) => (
-            <div key={inf.idInfNutricional}>
-              <h2>Energia del producto: {inf.energia}</h2>
-              <h2>Proteinas del producto: {inf.proteinas}</h2>
-              <h2>Grasa Total del producto: {inf.grasaTotal}</h2>
-              <h2>Carbohidratos Total del producto: {inf.carbohidratos}</h2>
-              <h2>Azucares Totales del producto: {inf.azucaresTotal}</h2>
-              <h2>Sodio Total del producto: {inf.sodio}</h2>
-            </div>
-          ))}
+          <InfNutricionalCard infNutricional = {infNutricional}/>
           <button
             onClick={() => navigate(`/EditarinfNutricional/${params.id}`)}
           >
