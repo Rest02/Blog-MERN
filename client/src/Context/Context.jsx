@@ -44,8 +44,12 @@ export const InfoodContextProvider = ({ children }) => {
   }
 
   async function listarEmpresa() {
-    const response = await listEmpresa();
-    setEmpresa(response.data);
+    try{
+      const response = await listEmpresa();
+      setEmpresa(response.data);
+    }catch(error){
+      console.log(error)
+    }
   }
 
   // async function getOneProducto(id) {
