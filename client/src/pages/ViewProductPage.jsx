@@ -26,16 +26,28 @@ function ViewProductPage() {
   return (
     <div>
       <CardComponent1 producto={producto} />
-      {infNutricional && infNutricional.length > 0? (
+      {infNutricional && infNutricional.length > 0 ? (
         <div>
           <h1>Informacion Nutricional</h1>
-          <button onClick={() => navigate(`/EditarinfNutricional/${params.id}`)} >Editar Informacion Nutricional</button>
+          {infNutricional.map((inf) => (
+            <div key={inf.idInfNutricional}>
+              <h2>Energia del producto: {inf.energia}</h2>
+              <h2>Proteinas del producto: {inf.proteinas}</h2>
+              <h2>Grasa Total del producto: {inf.grasaTotal}</h2>
+              <h2>Carbohidratos Total del producto: {inf.carbohidratos}</h2>
+              <h2>Azucares Totales del producto: {inf.azucaresTotal}</h2>
+              <h2>Sodio Total del producto: {inf.sodio}</h2>
+            </div>
+          ))}
+          <button
+            onClick={() => navigate(`/EditarinfNutricional/${params.id}`)}
+          >
+            Editar Informacion Nutricional
+          </button>
         </div>
       ) : (
         <div>
-          <button
-            onClick={() => navigate(`/infNutricional/${params.id}`)}
-          >
+          <button onClick={() => navigate(`/infNutricional/${params.id}`)}>
             Crear InfNutricional
           </button>
         </div>
