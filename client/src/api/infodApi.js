@@ -2,9 +2,13 @@ import axios from "axios";
 
 //----------------------------------------------------------------------------------------------------
 
-export const putInfNutricional = async (id , values) => {
-  return axios.put(`http://localhost:4000/infNutricional/${id}`, values)
-}
+export const postCategoria = async (values) => {
+  return axios.post(`http://localhost:4000/Crearcategoria/${values}`);
+};
+
+export const putInfNutricional = async (id, values) => {
+  return axios.put(`http://localhost:4000/infNutricional/${id}`, values);
+};
 
 export const postInfNutricional = async (id, values) => {
   return axios.post(`http://localhost:4000/infnutri/${id}`, values);

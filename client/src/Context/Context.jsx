@@ -12,7 +12,8 @@ import {
   getOneProducto,
   getInfNutricionalOnly,
   postInfNutricional,
-  putInfNutricional
+  putInfNutricional,
+  postCategoria
 } from "../api/infodApi";
 import { useNavigate } from "react-router";
 
@@ -74,6 +75,20 @@ export const InfoodContextProvider = ({ children }) => {
       console.log(response);
     } catch (error) {
       console.log(error);
+    }
+  }
+
+  async function createCategoria(values){
+    try{
+      const formData = new FormData()
+      formData.append("nombreCategoria", values.nombreProducto )
+      formData.append("descripcionCategoria", values.descripcionProducto)
+      formData.append("imagen", values.imagen)
+
+      const response = await postCategoria(values)
+      console.log(response)
+    }catch (error){
+      console.log(error)
     }
   }
 
@@ -191,7 +206,8 @@ export const InfoodContextProvider = ({ children }) => {
         getOneProductoIndv,
         getOneInfNutricional,
         creandoInformacionNutricional,
-        updateInfNutricional
+        updateInfNutricional,
+        createCategoria
       }}
     >
       {children}
