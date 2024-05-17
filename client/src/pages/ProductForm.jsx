@@ -30,7 +30,7 @@ function ProductForm() {
   }, []);
 
   useEffect(() => {
-    if (producto && producto.length > 0) {
+    if (params.id && producto && producto.length > 0) {
       setProductoBase({
         nombreProducto: producto[0].nombreProducto,
         descripcionProducto: producto[0].descripcionProducto,
@@ -38,8 +38,16 @@ function ProductForm() {
         imagen: producto[0].imagen,
         idCategoria: producto[0].idCategoria,
       });
+    } else {
+      setProductoBase({
+        nombreProducto: "",
+        descripcionProducto: "",
+        colorProducto: "",
+        imagen: "",
+        idCategoria: "1",
+      });
     }
-  }, [producto]);
+  }, [params.id, producto]);
 
   return (
     <div>
@@ -51,6 +59,8 @@ function ProductForm() {
         onSubmit={async (values, actions) => {
           if (params.id) {
             await updateProduct(params.id, values);
+            actions.resetForm();
+            navigate("/");
           } else {
             await createProduct(values);
             actions.resetForm();
