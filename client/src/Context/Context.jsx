@@ -80,17 +80,18 @@ export const InfoodContextProvider = ({ children }) => {
 
   async function createCategoria(values){
     try{
-      const formData = new FormData()
-      formData.append("nombreCategoria", values.nombreProducto )
-      formData.append("descripcionCategoria", values.descripcionProducto)
-      formData.append("imagen", values.imagen)
-
-      const response = await postCategoria(values)
-      console.log(response)
-    }catch (error){
-      console.log(error)
+      const formData = new FormData();
+      formData.append("nombreCategoria", values.nombreCategoria);
+      formData.append("descripcionCategoria", values.descripcionCategoria);
+      formData.append("imagen", values.imagen);
+  
+      const response = await postCategoria(formData);
+      console.log(response);
+    } catch (error) {
+      console.log(error);
     }
   }
+  
 
   async function deleteProducto(id) {
     try {

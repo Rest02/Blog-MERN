@@ -2,9 +2,10 @@ import axios from "axios";
 
 //----------------------------------------------------------------------------------------------------
 
-export const postCategoria = async (values) => {
-  return axios.post(`http://localhost:4000/Crearcategoria/${values}`);
+export const postCategoria = async (formData) => {
+  return axios.post(`http://localhost:4000/Crearcategoria`, formData);
 };
+
 
 export const putInfNutricional = async (id, values) => {
   return axios.put(`http://localhost:4000/infNutricional/${id}`, values);

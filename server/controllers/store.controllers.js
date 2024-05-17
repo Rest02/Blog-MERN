@@ -82,16 +82,21 @@ export const createProducto = async (req, res) => {
 
 export const createCategoria = async (req, res) => {
   try {
-    const { nombreCategoria, descripcionCategoria, imagen } = req.body;
-    const result = pool.query(
+    let filename;
+    if (req.file) {
+      filename = req.file.filename; // Si la imagen se actualiza
+    }
+
+    const { nombreCategoria, descripcionCategoria } = req.body;
+    const [result] = await pool.query(
       "INSERT INTO categoria(nombreCategoria, descripcionCategoria, imagen) VALUES(?,?,?)",
-      [nombreCategoria, descripcionCategoria, imagen]
+      [nombreCategoria, descripcionCategoria, filename]
     );
     console.log(result);
     res.json({
       nombreCategoria,
       descripcionCategoria,
-      imagen,
+      filename,
     });
   } catch (error) {
     return res.status(404).json({
@@ -99,6 +104,7 @@ export const createCategoria = async (req, res) => {
     });
   }
 };
+
 
 // APARTADO CREAR INF NUTRICIONAL
 

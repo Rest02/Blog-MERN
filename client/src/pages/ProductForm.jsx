@@ -48,12 +48,12 @@ function ProductForm() {
       <Formik
         initialValues={productoBase}
         enableReinitialize={true}
-        onSubmit={async (values, { resetForm, setSubmitting }) => {
+        onSubmit={async (values, actions) => {
           if (params.id) {
             await updateProduct(params.id, values);
           } else {
             await createProduct(values);
-            resetForm();
+            actions.resetForm();
             navigate("/");
           }
         }}
@@ -114,7 +114,7 @@ function ProductForm() {
             >
               <option value="1">Frutas y verduras</option>
               <option value="2">Carnes y pescados</option>
-              <option value="3">Categoria 3</option>
+              <option value="3">Lacteos</option>
             </select>
 
             {/* --------------------------------------------------------------------------------- */}
