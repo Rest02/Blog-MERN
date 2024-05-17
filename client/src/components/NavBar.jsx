@@ -22,6 +22,9 @@ function NavBar() {
         <li>
           <Link to="/categorias">Categorias de productos</Link>
         </li>
+        <li>
+          <Link to="/categoriaForm">Crear categoria de productos</Link>
+        </li>
       </ul>
     </div>
   );
