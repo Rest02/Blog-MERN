@@ -7,7 +7,7 @@ function ProductForm() {
   const navigate = useNavigate();
   const params = useParams();
 
-  const { getOneProductoIndv, createProduct, updateProduct, producto } =
+  const { getOneProductoIndv, createProduct, updateProduct, producto, getCategorias, categoria } =
     useInfood();
 
   const [productoBase, setProductoBase] = useState({
@@ -24,10 +24,11 @@ function ProductForm() {
         await getOneProductoIndv(params.id);
       }
     }
-  
+
+    getCategorias()
     sendProducto();
   }, []);
-  
+
   useEffect(() => {
     if (producto && producto.length > 0) {
       setProductoBase({
@@ -39,7 +40,6 @@ function ProductForm() {
       });
     }
   }, [producto]);
-  
 
   return (
     <div>
@@ -112,9 +112,9 @@ function ProductForm() {
               onChange={handleChange}
               value={values.idCategoria}
             >
-              <option value="1">Frutas y verduras</option>
-              <option value="2">Carnes y pescados</option>
-              <option value="3">Lacteos</option>
+              {categoria.map((cat)=>(
+                <option key={cat.idCategoria} value={cat.idCategoria}>{cat.nombreCategoria}</option>
+              ))}
             </select>
 
             {/* --------------------------------------------------------------------------------- */}
