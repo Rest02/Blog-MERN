@@ -28,6 +28,8 @@ function App() {
         <Route path="/infNutricional/:id" element={<InfNutricionalPage />}></Route>
         <Route path="/EditarinfNutricional/:id" element={<InfNutricionalPage />}></Route>
         <Route path="/categoriaForm" element={<CategoriasFormPage />}></Route>
+        <Route path="/categoriaForm/:id" element={<CategoriasFormPage />}></Route>
+
 
 
         
