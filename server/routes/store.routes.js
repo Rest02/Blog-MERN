@@ -54,7 +54,7 @@ router.delete("/productos/opciones/:id", deleteProducto)
 
 router.put("/productos/update/:id", upload.single("imagen"), updateProducto)
 router.put("/infNutricional/:id", updateInfNutricional)
-router.put("/categoria/update/:id", updateCategoria)
+router.put("/categoria/:id", updateCategoria)
 
 
 

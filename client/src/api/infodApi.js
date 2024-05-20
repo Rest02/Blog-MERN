@@ -2,6 +2,10 @@ import axios from "axios";
 
 //----------------------------------------------------------------------------------------------------
 
+export const putCategoria = async (id, values) => {
+  return axios.put(`http://localhost:4000/categoria/${id}`, values)
+}
+
 export const postCategoria = async (formData) => {
   return axios.post(`http://localhost:4000/Crearcategoria`, formData);
 };
