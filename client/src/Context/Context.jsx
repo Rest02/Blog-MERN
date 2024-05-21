@@ -13,7 +13,8 @@ import {
   getInfNutricionalOnly,
   postInfNutricional,
   putInfNutricional,
-  postCategoria
+  postCategoria,
+  putCategoria
 } from "../api/infodApi";
 import { useNavigate } from "react-router";
 
@@ -136,6 +137,21 @@ export const InfoodContextProvider = ({ children }) => {
       console.log(response);
     } catch (error) {
       console.log(error);
+    }
+  }
+
+  async function updateCategorias(id, values){
+    try{
+      const formdata = new FormData()
+      formdata.append("")
+      formdata.append("")
+      formdata.append("")
+      formdata.append("")
+      formdata.append("")
+      const response = putCategoria(id, formdata)
+      console.log(response)
+    }catch(error){
+      console.log(error)
     }
   }
 
