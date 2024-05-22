@@ -1,6 +1,10 @@
 import React from "react";
+import { useNavigate } from 'react-router-dom'
 
 function CategoriaCard({ categoria }) {
+
+  const navigate = useNavigate()
+
   return (
     <div>
       <h1>Categorias</h1>
@@ -9,6 +13,7 @@ function CategoriaCard({ categoria }) {
           <h1>{cat.nombreCategoria}</h1>
           <p>{cat.descripcionCategoria}</p>
           <img src="" alt="" />
+          <button onClick={()=>(navigate(`/categoriaForm/${cat.idCategoria}`))}>Editar Categoria</button>
         </div>
       ))}
     </div>
