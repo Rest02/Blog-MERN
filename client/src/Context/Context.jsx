@@ -14,7 +14,8 @@ import {
   postInfNutricional,
   putInfNutricional,
   postCategoria,
-  putCategoria
+  putCategoria,
+  oneCategoria
 } from "../api/infodApi";
 import { useNavigate } from "react-router";
 
@@ -35,6 +36,8 @@ export const InfoodContextProvider = ({ children }) => {
   const [categoria, setCategoria] = useState([]);
   const [producto, setProducto] = useState([]);
   const [infNutricional, setInfNutricional] = useState([])
+  const [OneCategoria, setOneCategoria] = useState([])
+
   
 
 
@@ -155,6 +158,17 @@ export const InfoodContextProvider = ({ children }) => {
     }
   }
 
+
+  async function getOneCategoria(id){
+    try{
+      const result = await oneCategoria(id)
+      setOneCategoria(result.data)
+      console.log(OneCategoria)
+    }catch(error){
+      console.log(error)
+    }
+  }
+
   async function mostrarProductInfNutricional(id) {
     try {
       const response = await getProductInfNutricional(id);
@@ -211,6 +225,7 @@ export const InfoodContextProvider = ({ children }) => {
         categoria,
         producto,
         infNutricional,
+        OneCategoria,
         cargarTareas,
         listarEmpresa,
         getOneProducto,
@@ -224,7 +239,8 @@ export const InfoodContextProvider = ({ children }) => {
         getOneInfNutricional,
         creandoInformacionNutricional,
         updateInfNutricional,
-        createCategoria
+        createCategoria,
+        getOneCategoria
       }}
     >
       {children}
