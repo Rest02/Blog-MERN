@@ -1,14 +1,33 @@
 import React from "react";
 import { Formik, Form } from "formik";
 import { useInfood } from "../Context/Context";
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
+import { useEffect } from 'react'
 
 function CategoriasFormPage() {
   const { createCategoria } = useInfood();
   const navigate = useNavigate()
+  const params = useParams()
+
+
+
+
+  useEffect(()=>{
+    console.log("Hola mundo")    
+  },[])
+
+
+
 
   return (
+
+    
+
     <div>
+
+      <h1>{params.id ? "Editando categoria" : "Creando categoria"}</h1>
+
+
       <Formik
         initialValues={{
           nombreCategoria: "",
