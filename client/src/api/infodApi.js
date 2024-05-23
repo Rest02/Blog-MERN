@@ -2,6 +2,11 @@ import axios from "axios";
 
 //----------------------------------------------------------------------------------------------------
 
+
+export const oneCategoria = async(id) => {
+  return axios.get(`http://localhost:4000/onecategoria/${id}`)
+}
+
 export const putCategoria = async (id, values) => {
   return axios.put(`http://localhost:4000/categoria/${id}`, values)
 }

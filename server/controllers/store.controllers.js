@@ -315,8 +315,15 @@ export const updateCategoria = async (req, res) => {
 };
 
 export const getOneCategoria = async (req,res) => {
-  const [result] = await pool.query("select * from categoria where idCategoria = ?", [req.params.id])
-  res.json(result)
+  try{
+    const [result] = await pool.query("select * from categoria where idCategoria = ?", [req.params.id])
+    res.json(result)
+  }catch(error){
+    return res.status(404).json({
+      message: error.message,
+    });
+  }
+
 }
 
 //-------------------------------------------------------------------------------------------------

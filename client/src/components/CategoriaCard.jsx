@@ -12,7 +12,7 @@ function CategoriaCard({ categoria }) {
         <div key={cat.idCategoria}>
           <h1>{cat.nombreCategoria}</h1>
           <p>{cat.descripcionCategoria}</p>
-          <img src="" alt="" />
+          <img src={`http://localhost:4000/images/` + cat.imagen} alt="" />
           <button onClick={()=>(navigate(`/categoriaForm/${cat.idCategoria}`))}>Editar Categoria</button>
         </div>
       ))}
