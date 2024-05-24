@@ -163,7 +163,7 @@ export const InfoodContextProvider = ({ children }) => {
     try{
       const result = await oneCategoria(id)
       setOneCategoria(result.data)
-      console.log(OneCategoria)
+
     }catch(error){
       console.log(error)
     }

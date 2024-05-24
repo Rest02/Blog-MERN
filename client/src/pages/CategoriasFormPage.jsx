@@ -1,44 +1,53 @@
 import React from "react";
+import { useState } from 'react'
 import { Formik, Form } from "formik";
 import { useInfood } from "../Context/Context";
-import { useNavigate, useParams } from 'react-router-dom'
-import { useEffect } from 'react'
+import { useNavigate, useParams } from "react-router-dom";
+import { useEffect } from "react";
 
 function CategoriasFormPage() {
-  const { createCategoria } = useInfood();
-  const navigate = useNavigate()
-  const params = useParams()
+  const { createCategoria, getOneCategoria, OneCategoria } = useInfood();
+  const navigate = useNavigate();
+  const params = useParams();
 
+  const [Categoria, setCategoria] = useState([])
 
-
+  useEffect(() => {
+    async function loadOneCategoria() {
+      if (params.id) {
+        await getOneCategoria(params.id);
+      }
+    }
+    loadOneCategoria();
+  }, []);
 
   useEffect(()=>{
-    console.log("Hola mundo")    
-  },[])
-
-
-
+    if(OneCategoria && OneCategoria.length > 0){
+      const categoriaData = {
+        nombreCategoria: OneCategoria[0].nombreCategoria ,
+        descripcionCategoria: OneCategoria[0].descripcionCategoria,
+        imagen: OneCategoria[0].imagen
+      }
+      console.log(OneCategoria)
+      setCategoria(categoriaData)
+    }
+  },[OneCategoria])
 
   return (
-
-    
-
     <div>
-
       <h1>{params.id ? "Editando categoria" : "Creando categoria"}</h1>
 
-
       <Formik
-        initialValues={{
-          nombreCategoria: "",
-          descripcionCategoria: "",
-          imagen: "",
-        }}
+        initialValues={Categoria}
+        enableReinitialize={true}
         onSubmit={async (values, actions) => {
-          await createCategoria(values);
-          actions.resetForm();
-          navigate("/categorias")
-
+          if(params.id){
+            console.log("hola")
+          }else{
+            await createCategoria(values);
+            actions.resetForm();
+            navigate("/categorias");
+          }
         }}
       >
         {({ handleChange, handleSubmit, setFieldValue, values }) => (
@@ -66,7 +75,6 @@ function CategoriasFormPage() {
               type="file"
               name="imagen"
               onChange={(e) => setFieldValue("imagen", e.target.files[0])}
-
             />
 
             <button type="submit">Save</button>
