@@ -146,12 +146,11 @@ export const InfoodContextProvider = ({ children }) => {
   async function updateCategorias(id, values){
     try{
       const formdata = new FormData()
-      formdata.append("")
-      formdata.append("")
-      formdata.append("")
-      formdata.append("")
-      formdata.append("")
-      const response = putCategoria(id, formdata)
+      formdata.append("nombreCategoria", values.nombreCategoria)
+      formdata.append("descripcionCategoria", values.descripcionCategoria)
+      formdata.append("imagen", values.imagen)
+
+      const response = await putCategoria(id, formdata)
       console.log(response)
     }catch(error){
       console.log(error)
@@ -240,7 +239,8 @@ export const InfoodContextProvider = ({ children }) => {
         creandoInformacionNutricional,
         updateInfNutricional,
         createCategoria,
-        getOneCategoria
+        getOneCategoria,
+        updateCategorias
       }}
     >
       {children}

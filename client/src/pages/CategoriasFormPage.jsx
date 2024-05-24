@@ -1,12 +1,12 @@
 import React from "react";
 import { useState } from 'react'
-import { Formik, Form } from "formik";
+import { Formik, Form, validateYupSchema } from "formik";
 import { useInfood } from "../Context/Context";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
 
 function CategoriasFormPage() {
-  const { createCategoria, getOneCategoria, OneCategoria } = useInfood();
+  const { createCategoria, getOneCategoria, OneCategoria, updateCategorias } = useInfood();
   const navigate = useNavigate();
   const params = useParams();
 
@@ -42,7 +42,7 @@ function CategoriasFormPage() {
         enableReinitialize={true}
         onSubmit={async (values, actions) => {
           if(params.id){
-            console.log("hola")
+            await updateCategorias(params.id, values)
           }else{
             await createCategoria(values);
             actions.resetForm();

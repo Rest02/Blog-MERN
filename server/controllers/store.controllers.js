@@ -105,35 +105,34 @@ export const createCategoria = async (req, res) => {
   }
 };
 
-
 // APARTADO CREAR INF NUTRICIONAL
 
 export const createInf = async (req, res) => {
   // try {
-    const { id } = req.params;
-    console.log(id);
-    const {
-      energia,
-      proteinas,
-      grasaTotal,
-      carbohidratos,
-      azucaresTotal,
-      sodio,
-    } = req.body;
-    const result = pool.query(
-      "INSERT INTO infNutricional(energia, proteinas, grasaTotal, carbohidratos, azucaresTotal, sodio, idProducto) VALUES(?,?,?,?,?,?,?)",
-      [energia, proteinas, grasaTotal, carbohidratos, azucaresTotal, sodio, id]
-    );
-    console.log(result);
-    res.json({
-      energia,
-      proteinas,
-      grasaTotal,
-      carbohidratos,
-      azucaresTotal,
-      sodio,
-      id,
-    });
+  const { id } = req.params;
+  console.log(id);
+  const {
+    energia,
+    proteinas,
+    grasaTotal,
+    carbohidratos,
+    azucaresTotal,
+    sodio,
+  } = req.body;
+  const result = pool.query(
+    "INSERT INTO infNutricional(energia, proteinas, grasaTotal, carbohidratos, azucaresTotal, sodio, idProducto) VALUES(?,?,?,?,?,?,?)",
+    [energia, proteinas, grasaTotal, carbohidratos, azucaresTotal, sodio, id]
+  );
+  console.log(result);
+  res.json({
+    energia,
+    proteinas,
+    grasaTotal,
+    carbohidratos,
+    azucaresTotal,
+    sodio,
+    id,
+  });
   // } catch (error) {
   //   return res.status(404).json({
   //     message: error.message,
@@ -166,18 +165,22 @@ export const getProductos = async (req, res) => {
 };
 
 export const getInfNutricional = async (req, res) => {
-  const [result] = await pool.query("SELECT * FROM infNutricional WHERE idProducto = ?",[req.params.id])
-  res.json(result)
-  console.log(result)
-}
+  const [result] = await pool.query(
+    "SELECT * FROM infNutricional WHERE idProducto = ?",
+    [req.params.id]
+  );
+  res.json(result);
+  console.log(result);
+};
 
 export const getOneProduct = async (req, res) => {
   // try {
-    const [result] = await pool.query("SELECT * FROM productos where idProducto = ?", [
-      req.params.id,
-    ]);
-    res.json(result);
-    console.log(result)
+  const [result] = await pool.query(
+    "SELECT * FROM productos where idProducto = ?",
+    [req.params.id]
+  );
+  res.json(result);
+  console.log(result);
   // } catch (error) {
   //   return res.status(400).json({
   //     message: error.message,
@@ -300,12 +303,42 @@ export const updateInfNutricional = async (req, res) => {
 };
 
 export const updateCategoria = async (req, res) => {
+  // try {
+  let filename;
+  if (req.file) {
+    filename = req.file.filename; // Si la imagen se actualiza
+  }
+
+  const { nombreCategoria, descripcionCategoria } = req.body;
+
+  let updateFields = {
+    nombreCategoria,
+    descripcionCategoria,
+  };
+
+  if (filename) {
+    updateFields.imagen = filename;
+  }
+
+  const [result] = await pool.query(
+    "UPDATE categoria SET ? WHERE idCategoria = ?",
+    [updateFields, req.params.id]
+  );
+
+  res.json(result);
+  // } catch (error) {
+  //   return res.status(404).json({
+  //     message: error.message,
+  //   });
+  // }
+};
+
+export const getOneCategoria = async (req, res) => {
   try {
     const [result] = await pool.query(
-      "UPDATE categoria SET ? WHERE idCategoria = ?",
-      [req.body, req.params.id]
+      "select * from categoria where idCategoria = ?",
+      [req.params.id]
     );
-
     res.json(result);
   } catch (error) {
     return res.status(404).json({
@@ -313,17 +346,5 @@ export const updateCategoria = async (req, res) => {
     });
   }
 };
-
-export const getOneCategoria = async (req,res) => {
-  try{
-    const [result] = await pool.query("select * from categoria where idCategoria = ?", [req.params.id])
-    res.json(result)
-  }catch(error){
-    return res.status(404).json({
-      message: error.message,
-    });
-  }
-
-}
 
 //-------------------------------------------------------------------------------------------------
