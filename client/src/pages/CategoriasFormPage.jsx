@@ -1,16 +1,21 @@
 import React from "react";
-import { useState } from 'react'
-import { Formik, Form, validateYupSchema } from "formik";
+import { useState } from "react";
+import { Formik, Form } from "formik";
 import { useInfood } from "../Context/Context";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
 
 function CategoriasFormPage() {
-  const { createCategoria, getOneCategoria, OneCategoria, updateCategorias } = useInfood();
+  const { createCategoria, getOneCategoria, OneCategoria, updateCategorias } =
+    useInfood();
   const navigate = useNavigate();
   const params = useParams();
 
-  const [Categoria, setCategoria] = useState([])
+  const [Categoria, setCategoria] = useState({
+    nombreCategoria: "",
+    descripcionCategoria: "",
+    imagen: ""
+  });
 
   useEffect(() => {
     async function loadOneCategoria() {
@@ -21,17 +26,22 @@ function CategoriasFormPage() {
     loadOneCategoria();
   }, []);
 
-  useEffect(()=>{
-    if(OneCategoria && OneCategoria.length > 0){
+  useEffect(() => {
+    if (params.id && OneCategoria && OneCategoria.length > 0) {
       const categoriaData = {
-        nombreCategoria: OneCategoria[0].nombreCategoria ,
+        nombreCategoria: OneCategoria[0].nombreCategoria,
         descripcionCategoria: OneCategoria[0].descripcionCategoria,
-        imagen: OneCategoria[0].imagen
-      }
-      console.log(OneCategoria)
-      setCategoria(categoriaData)
+        imagen: OneCategoria[0].imagen,
+      };
+      setCategoria(categoriaData);
+    } else {
+      setCategoria({
+        nombreCategoria: "",
+        descripcionCategoria: "",
+        imagen: "",
+      });
     }
-  },[OneCategoria])
+  }, [params.id, OneCategoria]);
 
   return (
     <div>
@@ -41,12 +51,16 @@ function CategoriasFormPage() {
         initialValues={Categoria}
         enableReinitialize={true}
         onSubmit={async (values, actions) => {
-          if(params.id){
-            await updateCategorias(params.id, values)
-          }else{
+          if (params.id) {
+            await updateCategorias(params.id, values);
+            actions.resetForm();
+            navigate("/categorias");
+            alert("Se ha Actualizado la categoria");
+          } else {
             await createCategoria(values);
             actions.resetForm();
             navigate("/categorias");
+            alert("Se ha Creado la categoria");
           }
         }}
       >
