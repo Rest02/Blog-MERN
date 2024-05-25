@@ -15,7 +15,8 @@ import {
   putInfNutricional,
   postCategoria,
   putCategoria,
-  oneCategoria
+  oneCategoria,
+  eliminarCategoria
 } from "../api/infodApi";
 import { useNavigate } from "react-router";
 
@@ -157,7 +158,6 @@ export const InfoodContextProvider = ({ children }) => {
     }
   }
 
-
   async function getOneCategoria(id){
     try{
       const result = await oneCategoria(id)
@@ -188,7 +188,6 @@ export const InfoodContextProvider = ({ children }) => {
     }
   }
 
-
   async function getOneInfNutricional(id){
     try{
       const response = await getInfNutricionalOnly(id)
@@ -211,6 +210,15 @@ export const InfoodContextProvider = ({ children }) => {
     try{
       const response = putInfNutricional(id, values)
       console.log(response)
+    }catch(error){
+      console.log(error)
+    }
+  }
+
+  async function deleteCategoria(id){
+    try{
+      const response = await eliminarCategoria(id)
+      console.log(response.data)
     }catch(error){
       console.log(error)
     }
@@ -240,7 +248,8 @@ export const InfoodContextProvider = ({ children }) => {
         updateInfNutricional,
         createCategoria,
         getOneCategoria,
-        updateCategorias
+        updateCategorias,
+        deleteCategoria
       }}
     >
       {children}
