@@ -1,5 +1,5 @@
 import {Router} from 'express'
-import { createEmpresa, createCategoria, createProducto, createInf, getEmpresa, getProductos, getProducto, deleteProducto, updateProducto, updateInfNutricional, updateCategoria, getCategoria, getOneProduct, getInfNutricional, getOneCategoria} from '../controllers/store.controllers.js'
+import { createEmpresa, createCategoria, createProducto, createInf, getEmpresa, getProductos, getProducto, deleteProducto, updateProducto, updateInfNutricional, updateCategoria, getCategoria, getOneProduct, getInfNutricional, getOneCategoria, deleteCategoria} from '../controllers/store.controllers.js'
 import { upload } from '../multer.js'
 const router = Router()
 
@@ -48,6 +48,8 @@ router.get("/onecategoria/:id", getOneCategoria)
 // ------------------------------------------------ METODOS DELETE ------------------------------------------------
 
 router.delete("/productos/opciones/:id", deleteProducto)
+
+router.delete("/categoria/:id", deleteCategoria)
 
 // ----------------------------------------------------------------------------------------------------------------
 

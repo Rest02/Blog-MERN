@@ -250,6 +250,18 @@ export const deleteProducto = async (req, res) => {
   }
 };
 
+
+export const deleteCategoria = async (req, res)=> {
+  try{
+    const [response] = await pool.query("DELETE FROM categoria WHERE idCategoria = ?", [req.params.id])
+    res.json(response)
+  }catch(error){
+    return res.status(404).json({
+      message: error.message
+    })
+  }
+}
+
 //-------------------------------------------------------------------------------------------------
 
 //------------------------------------- METODO PUT ------------------------------------------------
