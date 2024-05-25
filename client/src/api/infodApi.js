@@ -2,19 +2,21 @@ import axios from "axios";
 
 //----------------------------------------------------------------------------------------------------
 
+export const eliminarCategoria = async (id) => {
+  return axios.delete(`http://localhost:4000/categoria/${id}`);
+};
 
-export const oneCategoria = async(id) => {
-  return axios.get(`http://localhost:4000/onecategoria/${id}`)
-}
+export const oneCategoria = async (id) => {
+  return axios.get(`http://localhost:4000/onecategoria/${id}`);
+};
 
 export const putCategoria = async (id, values) => {
-  return axios.put(`http://localhost:4000/categoria/${id}`, values)
-}
+  return axios.put(`http://localhost:4000/categoria/${id}`, values);
+};
 
 export const postCategoria = async (formData) => {
   return axios.post(`http://localhost:4000/Crearcategoria`, formData);
 };
-
 
 export const putInfNutricional = async (id, values) => {
   return axios.put(`http://localhost:4000/infNutricional/${id}`, values);
