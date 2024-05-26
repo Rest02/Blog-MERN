@@ -11,7 +11,7 @@ import CategoriasPage from "./pages/CategoriasPage";
 import ViewProductPage from "./pages/ViewProductPage";
 import InfNutricionalPage from './pages/InfNutricionalPage'
 import CategoriasFormPage from './pages/CategoriasFormPage'
-
+import ComparativaPage from './pages/ComparativaPage'
 function App() {
   return (
     <InfoodContextProvider>
@@ -29,6 +29,8 @@ function App() {
         <Route path="/EditarinfNutricional/:id" element={<InfNutricionalPage />}></Route>
         <Route path="/categoriaForm" element={<CategoriasFormPage />}></Route>
         <Route path="/categoriaForm/:id" element={<CategoriasFormPage />}></Route>
+        <Route path="/comparativa" element={<ComparativaPage/>}></Route>
+
 
 
 

@@ -25,6 +25,9 @@ function NavBar() {
         <li>
           <Link to="/categoriaForm">Crear categoria de productos</Link>
         </li>
+        <li>
+          <Link to="/comparativa">Comparar productos nutricionalmente</Link>
+        </li>
       </ul>
     </div>
   );
