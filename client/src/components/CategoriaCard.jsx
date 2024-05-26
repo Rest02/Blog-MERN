@@ -17,7 +17,7 @@ function CategoriaCard({ categoria }) {
           <p>{cat.descripcionCategoria}</p>
           <img src={`http://localhost:4000/images/` + cat.imagen} alt="" />
           <button onClick={()=>(navigate(`/categoriaForm/${cat.idCategoria}`))}>Editar Categoria</button>
-          <button onClick={()=>(deleteCategoria(cat.idCategoria) )}>Eliminar Categoria</button>
+          <button onClick={()=>(deleteCategoria(cat.idCategoria) && navigate(0))}>Eliminar Categoria</button>
         </div>
       ))}
     </div>
