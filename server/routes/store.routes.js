@@ -66,4 +66,12 @@ router.put("/categoria/:id", upload.single("imagen"), updateCategoria)
 // ----------------------------------------------------------------------------------------------------------------
 
 
+
+
+// router.get("/comparativa1/:id", comparative1)
+// router.get("/comparativa2/:id", comparative2)
+
+
+
+
 export default router

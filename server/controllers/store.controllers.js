@@ -360,3 +360,8 @@ export const getOneCategoria = async (req, res) => {
 };
 
 //-------------------------------------------------------------------------------------------------
+
+
+// export const comparative1 = async (req,res)=>{
+//   const [result] = await pool.query("select * from productos where idProducto = ?",[req.params.id])
+// }
