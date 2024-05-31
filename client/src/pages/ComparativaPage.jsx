@@ -1,27 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useInfood } from "../Context/Context";
 import { Formik, Form } from "formik";
 
 function ComparativaPage() {
-  const { cargarTareas, productos, getOneInfNutricional,infNutricional} = useInfood();
-
-  const [comparativa, setComparativa] = useState([])
-
-
-  useEffect(()=>{
-    async function loadProducts(){
-      await cargarTareas()
-      setComparativa([]) 
-      
-    }
-    loadProducts()
-  },[])
+  const { cargarTareas, productos } = useInfood();
 
   useEffect(() => {
-    if (infNutricional) {
-      setComparativa([...comparativa, infNutricional])
+    async function loadProducts() {
+      await cargarTareas();
     }
-  }, [infNutricional]);
+    loadProducts();
+  }, []);
 
   return (
     <div>
@@ -30,12 +19,14 @@ function ComparativaPage() {
           idProducto: "",
           idProducto2: "",
         }}
-        onSubmit={async (values) => {
-          console.log(values.idProducto)
-          await getOneInfNutricional(values.idProducto)
-          await getOneInfNutricional(values.idProducto2)
-          console.log("Comparativa", comparativa)
-
+        onSubmit={async (values, { setSubmitting }) => {
+          if (values.idProducto === "" || values.idProducto2 === "") {
+            alert("Debe seleccionar una opción para ambos productos");
+          } else {
+            console.log(values);
+            // Aquí podrías enviar los datos al backend o hacer lo que necesites con ellos
+          }
+          setSubmitting(false);
         }}
       >
         {(
@@ -44,14 +35,20 @@ function ComparativaPage() {
           <Form onSubmit={handleSubmit}>
             <label>Seleccione alternativa A</label>
             <select name="idProducto" onChange={handleChange}>
-              {productos.map((cat)=>(
-                <option key={cat.idProducto} value={cat.idProducto}>{cat.nombreProducto}</option>
+              <option>Selecciona la opcion</option>
+              {productos.map((cat) => (
+                <option key={cat.idProducto} value={cat.idProducto}>
+                  {cat.nombreProducto}
+                </option>
               ))}
             </select>
             <label>Seleccione producto B</label>
             <select name="idProducto2" onChange={handleChange}>
-              {productos.map((cat)=>(
-                <option key={cat.idProducto} value={cat.idProducto}>{cat.nombreProducto}</option>
+              <option>Selecciona la opcion</option>
+              {productos.map((cat) => (
+                <option key={cat.idProducto} value={cat.idProducto}>
+                  {cat.nombreProducto}
+                </option>
               ))}
             </select>
 
@@ -59,9 +56,6 @@ function ComparativaPage() {
           </Form>
         )}
       </Formik>
-
-      
-
     </div>
   );
 }
