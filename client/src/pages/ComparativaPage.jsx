@@ -3,14 +3,23 @@ import { useInfood } from "../Context/Context";
 import { Formik, Form } from "formik";
 
 function ComparativaPage() {
-  const { cargarTareas, productos } = useInfood();
+  const { cargarTareas, productos, getOneInfNutricional,infNutricional} = useInfood();
 
 
   useEffect(()=>{
     async function loadProducts(){
       await cargarTareas()
+      
     }
     loadProducts()
+  },[])
+
+  useEffect(()=>{
+    async function loatInfNutricional(){
+      await getOneInfNutricional(productos.idProducto)
+    }
+    loatInfNutricional()
+    console.log(infNutricional)
   },[])
 
   return (
