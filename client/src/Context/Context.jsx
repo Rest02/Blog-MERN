@@ -197,6 +197,14 @@ export const InfoodContextProvider = ({ children }) => {
     }
   }
 
+  async function getOneInfNutricionalData(id){
+    try{
+      await getInfNutricionalOnly(id)
+    }catch(error){
+      console.log(error)
+    }
+  }
+
   async function creandoInformacionNutricional(id, values){
     try{
       const response = await postInfNutricional(id , values)
@@ -249,7 +257,8 @@ export const InfoodContextProvider = ({ children }) => {
         createCategoria,
         getOneCategoria,
         updateCategorias,
-        deleteCategoria
+        deleteCategoria,
+        getOneInfNutricionalData
       }}
     >
       {children}

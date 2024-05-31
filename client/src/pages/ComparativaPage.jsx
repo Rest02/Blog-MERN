@@ -1,18 +1,27 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useInfood } from "../Context/Context";
 import { Formik, Form } from "formik";
 
 function ComparativaPage() {
   const { cargarTareas, productos, getOneInfNutricional,infNutricional} = useInfood();
 
+  const [comparativa, setComparativa] = useState([])
+
 
   useEffect(()=>{
     async function loadProducts(){
       await cargarTareas()
+      setComparativa([]) 
       
     }
     loadProducts()
   },[])
+
+  useEffect(() => {
+    if (infNutricional) {
+      setComparativa([...comparativa, infNutricional])
+    }
+  }, [infNutricional]);
 
   return (
     <div>
@@ -22,9 +31,11 @@ function ComparativaPage() {
           idProducto2: "",
         }}
         onSubmit={async (values) => {
-          console.log(values)
+          console.log(values.idProducto)
           await getOneInfNutricional(values.idProducto)
-          console.log(infNutricional)
+          await getOneInfNutricional(values.idProducto2)
+          console.log("Comparativa", comparativa)
+
         }}
       >
         {(
