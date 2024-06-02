@@ -250,17 +250,19 @@ export const deleteProducto = async (req, res) => {
   }
 };
 
-
-export const deleteCategoria = async (req, res)=> {
-  try{
-    const [response] = await pool.query("DELETE FROM categoria WHERE idCategoria = ?", [req.params.id])
-    res.json(response)
-  }catch(error){
+export const deleteCategoria = async (req, res) => {
+  try {
+    const [response] = await pool.query(
+      "DELETE FROM categoria WHERE idCategoria = ?",
+      [req.params.id]
+    );
+    res.json(response);
+  } catch (error) {
     return res.status(404).json({
-      message: error.message
-    })
+      message: error.message,
+    });
   }
-}
+};
 
 //-------------------------------------------------------------------------------------------------
 
@@ -361,7 +363,17 @@ export const getOneCategoria = async (req, res) => {
 
 //-------------------------------------------------------------------------------------------------
 
-
-// export const comparative1 = async (req,res)=>{
-//   const [result] = await pool.query("select * from productos where idProducto = ?",[req.params.id])
-// }
+export const comparativa = async (req, res) => {
+  try {
+    const { id1, id2 } = req.params;
+    const [response] = await pool.query(
+      "select * from productos where idProducto in (?,?)",
+      [id1, id2]
+    );
+    res.json(response);
+  } catch (error) {
+    return res.status(404).json({
+      message: error.message,
+    });
+  }
+};
