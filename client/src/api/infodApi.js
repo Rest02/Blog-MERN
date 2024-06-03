@@ -2,6 +2,10 @@ import axios from "axios";
 
 //----------------------------------------------------------------------------------------------------
 
+export const comparativaFunction = async(id1,id2) => {
+  return axios.get(`http´://localhost:4000/comparativa/${id1}/${id2}`)
+}
+
 export const eliminarCategoria = async (id) => {
   return axios.delete(`http://localhost:4000/categoria/${id}`);
 };
