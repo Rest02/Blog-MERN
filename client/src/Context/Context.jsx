@@ -16,7 +16,8 @@ import {
   postCategoria,
   putCategoria,
   oneCategoria,
-  eliminarCategoria
+  eliminarCategoria,
+  comparativaFunction
 } from "../api/infodApi";
 import { useNavigate } from "react-router";
 
@@ -38,7 +39,7 @@ export const InfoodContextProvider = ({ children }) => {
   const [producto, setProducto] = useState([]);
   const [infNutricional, setInfNutricional] = useState([])
   const [OneCategoria, setOneCategoria] = useState([])
-
+  const [comparativa, setComparativa] = useState([])
   
 
 
@@ -49,10 +50,23 @@ export const InfoodContextProvider = ({ children }) => {
     setProductos(response.data);
   }
 
+
+
   async function listarEmpresa() {
     try{
       const response = await listEmpresa();
       setEmpresa(response.data);
+    }catch(error){
+      console.log(error)
+    }
+  }
+
+
+
+  async function listarComparativa(id1,id2) {
+    try{
+      const response = await comparativaFunction(id1, id2)
+      setComparativa(response.data)
     }catch(error){
       console.log(error)
     }
@@ -241,6 +255,7 @@ export const InfoodContextProvider = ({ children }) => {
         producto,
         infNutricional,
         OneCategoria,
+        comparativa,
         cargarTareas,
         listarEmpresa,
         getOneProducto,
@@ -258,7 +273,8 @@ export const InfoodContextProvider = ({ children }) => {
         getOneCategoria,
         updateCategorias,
         deleteCategoria,
-        getOneInfNutricionalData
+        getOneInfNutricionalData,
+        listarComparativa
       }}
     >
       {children}
