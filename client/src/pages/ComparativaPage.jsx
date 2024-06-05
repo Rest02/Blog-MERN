@@ -3,7 +3,7 @@ import { useInfood } from "../Context/Context";
 import { Formik, Form } from "formik";
 
 function ComparativaPage() {
-  const { cargarTareas, productos } = useInfood();
+  const { cargarTareas, productos, listarComparativa, comparativa } = useInfood();
 
   useEffect(() => {
     async function loadProducts() {
@@ -12,6 +12,10 @@ function ComparativaPage() {
     loadProducts();
   }, []);
 
+  useEffect(()=>{
+    console.log(comparativa)
+  },[comparativa])
+
   return (
     <div>
       <Formik
@@ -19,14 +23,13 @@ function ComparativaPage() {
           idProducto: "",
           idProducto2: "",
         }}
-        onSubmit={async (values, { setSubmitting }) => {
+        onSubmit={async (values) => {
           if (values.idProducto === "" || values.idProducto2 === "") {
             alert("Debe seleccionar una opción para ambos productos");
           } else {
             console.log(values);
-            // Aquí podrías enviar los datos al backend o hacer lo que necesites con ellos
+            await listarComparativa(values.idProducto,values.idProducto2)
           }
-          setSubmitting(false);
         }}
       >
         {(
