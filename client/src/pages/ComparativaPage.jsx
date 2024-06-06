@@ -3,7 +3,8 @@ import { useInfood } from "../Context/Context";
 import { Formik, Form } from "formik";
 
 function ComparativaPage() {
-  const { cargarTareas, productos, listarComparativa, comparativa } = useInfood();
+  const { cargarTareas, productos, listarComparativa, comparativa } =
+    useInfood();
 
   useEffect(() => {
     async function loadProducts() {
@@ -12,9 +13,17 @@ function ComparativaPage() {
     loadProducts();
   }, []);
 
-  useEffect(()=>{
-    console.log(comparativa)
-  },[comparativa])
+  useEffect(() => {
+    console.log(comparativa);
+  }, [comparativa]);
+
+  function mostrarProductos() {
+    if (comparativa.length > 0) {
+      return <h1>Si contiene productos</h1>;
+    } else {
+      return <h1>Aún no se selecciona ningun producto</h1>;
+    }
+  }
 
   return (
     <div>
@@ -28,7 +37,7 @@ function ComparativaPage() {
             alert("Debe seleccionar una opción para ambos productos");
           } else {
             console.log(values);
-            await listarComparativa(values.idProducto,values.idProducto2)
+            await listarComparativa(values.idProducto, values.idProducto2);
           }
         }}
       >
@@ -59,6 +68,8 @@ function ComparativaPage() {
           </Form>
         )}
       </Formik>
+
+      <div>{mostrarProductos()}</div>
     </div>
   );
 }
