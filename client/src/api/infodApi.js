@@ -2,6 +2,10 @@ import axios from "axios";
 
 //----------------------------------------------------------------------------------------------------
 
+export const comparativaFunctionInfNutricional = async (id1,id2) => {
+  return axios.get(`http://localhost:4000/comparativaInf/${id1}/${id2}`)
+}
+
 export const comparativaFunction = async(id1,id2) => {
   return axios.get(`http://localhost:4000/comparativa/${id1}/${id2}`)
 }

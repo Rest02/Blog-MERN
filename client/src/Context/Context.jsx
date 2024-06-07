@@ -61,7 +61,7 @@ export const InfoodContextProvider = ({ children }) => {
     }
   }
 
-
+  
 
   async function listarComparativa(id1,id2) {
     try{
