@@ -377,3 +377,18 @@ export const comparativa = async (req, res) => {
     });
   }
 };
+
+export const comparativaInfNutricional = async (req, res) => {
+  try {
+    const { id1, id2 } = req.params;
+    const [result] = await pool.query(
+      "select * from infNutricional where idProducto in (?,?)",
+      [id1, id2]
+    );
+    res.json(result);
+  } catch (error) {
+    return res.status(404).json({
+      message: error.message,
+    });
+  }
+};
