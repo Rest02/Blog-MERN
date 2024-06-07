@@ -4,8 +4,14 @@ import { Formik, Form } from "formik";
 import ComponenteComparativa from "../components/ComponenteComparativa";
 
 function ComparativaPage() {
-  const { cargarTareas, productos, listarComparativa, comparativa } =
-    useInfood();
+  const {
+    cargarTareas,
+    productos,
+    listarComparativa,
+    comparativa,
+    listarComparativaInfNutricional,
+    comparativaInfNutricional,
+  } = useInfood();
 
   useEffect(() => {
     async function loadProducts() {
@@ -15,8 +21,9 @@ function ComparativaPage() {
   }, []);
 
   useEffect(() => {
-    console.log(comparativa);
-  }, [comparativa]);
+    console.log("Comparativa Nombres y phto: ", comparativa);
+    console.log("InfNutricional: ", comparativaInfNutricional);
+  }, [comparativa, comparativaInfNutricional]);
 
   return (
     <div>
@@ -31,6 +38,10 @@ function ComparativaPage() {
           } else {
             console.log(values);
             await listarComparativa(values.idProducto, values.idProducto2);
+            await listarComparativaInfNutricional(
+              values.idProducto,
+              values.idProducto2
+            );
           }
         }}
       >
@@ -63,7 +74,7 @@ function ComparativaPage() {
       </Formik>
 
       <div>
-        <ComponenteComparativa comparativa = {comparativa}/>
+        <ComponenteComparativa comparativa={comparativa} />
       </div>
     </div>
   );
