@@ -62,24 +62,21 @@ export const InfoodContextProvider = ({ children }) => {
     }
   }
 
-  async function listarComparativaInfNutricional(id1, id2){
-    try{
-      const response = await comparativaFunctionInfNutricional(id1 , id2)
-      setComparativaInfNutricional(response.data)
-    }catch(error){
-      console.log(error)
+  async function listarComparativa(id1, id2) {
+    try {
+      const response = await comparativaFunction(id1, id2);
+      const infNutricionalResponse = await comparativaFunctionInfNutricional(id1, id2);
+      
+      const comparativaConInfNutricional = response.data.map((producto, index) => ({
+        ...producto,
+        infNutricional: infNutricionalResponse.data[index]
+      }));
+      
+      setComparativa(comparativaConInfNutricional);
+    } catch (error) {
+      console.log(error);
     }
   }
-
-  async function listarComparativa(id1,id2) {
-    try{
-      const response = await comparativaFunction(id1, id2)
-      setComparativa(response.data)
-    }catch(error){
-      console.log(error)
-    }
-  }
-
   // async function getOneProducto(id) {
   //   try {
   //     const response = await editProducto(id);
@@ -284,7 +281,6 @@ export const InfoodContextProvider = ({ children }) => {
         deleteCategoria,
         getOneInfNutricionalData,
         listarComparativa,
-        listarComparativaInfNutricional
       }}
     >
       {children}

@@ -9,8 +9,6 @@ function ComparativaPage() {
     productos,
     listarComparativa,
     comparativa,
-    listarComparativaInfNutricional,
-    comparativaInfNutricional,
   } = useInfood();
 
   useEffect(() => {
@@ -21,9 +19,8 @@ function ComparativaPage() {
   }, []);
 
   useEffect(() => {
-    console.log("Comparativa Nombres y phto: ", comparativa);
-    console.log("InfNutricional: ", comparativaInfNutricional);
-  }, [comparativa, comparativaInfNutricional]);
+    console.log("Comparativa: ", comparativa);
+  }, [comparativa]);
 
   return (
     <div>
@@ -38,16 +35,10 @@ function ComparativaPage() {
           } else {
             console.log(values);
             await listarComparativa(values.idProducto, values.idProducto2);
-            await listarComparativaInfNutricional(
-              values.idProducto,
-              values.idProducto2
-            );
           }
         }}
       >
-        {(
-          { handleChange, handleSubmit } // Aquí usamos handleChange y handleSubmit de Formik
-        ) => (
+        {({ handleChange, handleSubmit }) => (
           <Form onSubmit={handleSubmit}>
             <label>Seleccione alternativa A</label>
             <select name="idProducto" onChange={handleChange}>
