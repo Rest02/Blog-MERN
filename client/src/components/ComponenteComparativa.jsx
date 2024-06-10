@@ -12,6 +12,12 @@ function ComponenteComparativa({ comparativa }) {
             <img src={`http://localhost:4000/images/` + comp.imagen} alt="" />
             <div>
               <p>Energia: {comp.infNutricional.energia}</p>
+              <p>Energia: {comp.infNutricional.proteina}</p>
+              <p>Energia: {comp.infNutricional.grasaTotal}</p>
+              <p>Energia: {comp.infNutricional.carbohidratos}</p>
+              <p>Energia: {comp.infNutricional.azucaresTotales}</p>
+              <p>Energia: {comp.infNutricional.sodio}</p>
+
               {/* Puedes agregar más campos de información nutricional aquí */}
             </div>
           </div>
