@@ -10,7 +10,7 @@ function ProductoCard({ producto }) {
 
 
   return (
-    <div>
+    <div className="bg-slate-800">
       <div onClick={() => navigate(`/viewProduct/${producto.idProducto}`)}>
         <h1>{producto.nombreProducto}</h1>
         <p>{producto.descripcionProducto}</p>
