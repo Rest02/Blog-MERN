@@ -3,30 +3,43 @@ import { Link } from "react-router-dom";
 
 function NavBar() {
   return (
-    <div>
-      <h1>Infood</h1>
-
-      <ul>
+    <div className="bg-gray-800 p-4 shadow-lg">
+      <h1 className="text-white text-3xl font-bold mb-4">Infood</h1>
+      <ul className="flex space-x-4">
         <li>
-          <Link to="/">Inicio</Link>
+          <Link to="/" className="text-white hover:text-gray-400">
+            Inicio
+          </Link>
         </li>
         <li>
-          <Link to="/newProduct">Crear Producto</Link>
+          <Link to="/newProduct" className="text-white hover:text-gray-400">
+            Crear Producto
+          </Link>
         </li>
         <li>
-          <Link to="/nosotros">Nosotros</Link>
+          <Link to="/nosotros" className="text-white hover:text-gray-400">
+            Nosotros
+          </Link>
         </li>
         <li>
-          <Link to="/editEmpresa">Editar Empresa</Link>
+          <Link to="/editEmpresa" className="text-white hover:text-gray-400">
+            Editar Empresa
+          </Link>
         </li>
         <li>
-          <Link to="/categorias">Categorias de productos</Link>
+          <Link to="/categorias" className="text-white hover:text-gray-400">
+            Categorías de productos
+          </Link>
         </li>
         <li>
-          <Link to="/categoriaForm">Crear categoria de productos</Link>
+          <Link to="/categoriaForm" className="text-white hover:text-gray-400">
+            Crear categoría de productos
+          </Link>
         </li>
         <li>
-          <Link to="/comparativa">Comparar productos nutricionalmente</Link>
+          <Link to="/comparativa" className="text-white hover:text-gray-400">
+            Comparar productos nutricionalmente
+          </Link>
         </li>
       </ul>
     </div>
