@@ -7,7 +7,7 @@ function ProductoCard({ producto }) {
   const { deleteProducto } = useInfood();
 
   return (
-    <div className="group relative rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
+    <div className="group relative rounded-lg border border-black overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
       <div className="cursor-pointer" onClick={() => navigate(`/viewProduct/${producto.idProducto}`)}>
         <img
           src={`http://localhost:4000/images/` + producto.imagen}
