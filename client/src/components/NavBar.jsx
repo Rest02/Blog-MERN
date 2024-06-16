@@ -3,45 +3,37 @@ import { Link } from "react-router-dom";
 
 function NavBar() {
   return (
-    <div className="bg-gray-800 p-4 shadow-lg">
-      <h1 className="text-white text-3xl font-bold mb-4">Infood</h1>
-      <ul className="flex space-x-4">
-        <li>
-          <Link to="/" className="text-white hover:text-gray-400">
-            Inicio
+    <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-10 py-12">
+      <header className="bg-white border border-black rounded-lg shadow-sm w-full px-4 sm:px-6 md:px-8 lg:px-10">
+        <div className="flex items-center justify-between h-16">
+          <Link to="/" className="text-xl font-bold text-gray-900">
+            Infood
           </Link>
-        </li>
-        <li>
-          <Link to="/newProduct" className="text-white hover:text-gray-400">
-            Crear Producto
-          </Link>
-        </li>
-        <li>
-          <Link to="/nosotros" className="text-white hover:text-gray-400">
-            Nosotros
-          </Link>
-        </li>
-        <li>
-          <Link to="/editEmpresa" className="text-white hover:text-gray-400">
-            Editar Empresa
-          </Link>
-        </li>
-        <li>
-          <Link to="/categorias" className="text-white hover:text-gray-400">
-            Categorías de productos
-          </Link>
-        </li>
-        <li>
-          <Link to="/categoriaForm" className="text-white hover:text-gray-400">
-            Crear categoría de productos
-          </Link>
-        </li>
-        <li>
-          <Link to="/comparativa" className="text-white hover:text-gray-400">
-            Comparar productos nutricionalmente
-          </Link>
-        </li>
-      </ul>
+          <nav className="flex items-center space-x-4">
+            <Link to="/" className="text-gray-600 hover:text-gray-900 transition-colors">
+              Inicio
+            </Link>
+            <Link to="/newProduct" className="text-gray-600 hover:text-gray-900 transition-colors">
+              Crear Producto
+            </Link>
+            <Link to="/nosotros" className="text-gray-600 hover:text-gray-900 transition-colors">
+              Nosotros
+            </Link>
+            <Link to="/editEmpresa" className="text-gray-600 hover:text-gray-900 transition-colors">
+              Editar Empresa
+            </Link>
+            <Link to="/categorias" className="text-gray-600 hover:text-gray-900 transition-colors">
+              Categorías de productos
+            </Link>
+            <Link to="/categoriaForm" className="text-gray-600 hover:text-gray-900 transition-colors">
+              Crear categoría de productos
+            </Link>
+            <Link to="/comparativa" className="text-gray-600 hover:text-gray-900 transition-colors">
+              Comparar productos nutricionalmente
+            </Link>
+          </nav>
+        </div>
+      </header>
     </div>
   );
 }
