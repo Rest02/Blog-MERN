@@ -1,5 +1,5 @@
 import {Router} from 'express'
-import { createEmpresa, createCategoria, createProducto, createInf, getEmpresa, getProductos, getProducto, deleteProducto, updateProducto, updateInfNutricional, updateCategoria, getCategoria, getOneProduct, getInfNutricional, getOneCategoria, deleteCategoria, comparativa, comparativaInfNutricional, barraBusqueda} from '../controllers/store.controllers.js'
+import { createEmpresa, createCategoria, createProducto, createInf, getEmpresa, getProductos, getProducto, deleteProducto, updateProducto, updateInfNutricional, updateCategoria, getCategoria, getOneProduct, getInfNutricional, getOneCategoria, deleteCategoria, comparativa, comparativaInfNutricional} from '../controllers/store.controllers.js'
 import { upload } from '../multer.js'
 const router = Router()
 
@@ -71,7 +71,7 @@ router.put("/categoria/:id", upload.single("imagen"), updateCategoria)
 router.get("/comparativa/:id1/:id2", comparativa)
 router.get("/comparativaInf/:id1/:id2", comparativaInfNutricional)
 
-router.get("/busqueda/:id", barraBusqueda)
+// router.get("/busqueda/:id", barraBusqueda)
 
 
 export default router
