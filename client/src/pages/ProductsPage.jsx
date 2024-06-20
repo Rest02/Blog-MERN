@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import ProductoCard from "../components/ProductoCard";
-import { useInfood } from "../Context/Context";
+import { useInfood } from "../Context/Context"
+import inicio from '../images/inicio.jpg'
 
 function ProductsList() {
   const { productos, cargarTareas } = useInfood();
@@ -33,7 +34,7 @@ function ProductsList() {
           <div className="w-full h-64 lg:w-1/2 lg:h-auto border border-black">
             <img
               className="h-full w-full object-cover"
-              src="https://picsum.photos/id/1018/2000"
+              src={inicio}
               alt="Winding mountain road"
             />
           </div>
