@@ -49,7 +49,7 @@ function ProductForm() {
   }, [params.id, producto]);
 
   return (
-    <div className="max-w-2xl mx-auto p-8 bg-white shadow-md rounded-lg border border-black">
+    <div className="max-w-2xl mx-auto p-8 bg-white shadow-md rounded-lg border border-black mt-8 mb-8">
       <h1 className="text-2xl font-semibold mb-6">{params.id ? "Editando producto" : "Creando producto"}</h1>
 
       <Formik
@@ -78,7 +78,7 @@ function ProductForm() {
                 placeholder="Escribe el nombre del producto"
                 onChange={handleChange}
                 value={values.nombreProducto}
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                className="mt-1 block w-full rounded-md border-black border shadow-sm p-2"
               />
             </div>
             {/* Descripción */}
@@ -91,7 +91,7 @@ function ProductForm() {
                 placeholder="Escribe una descripción del producto"
                 onChange={handleChange}
                 value={values.descripcionProducto}
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                className="mt-1 block w-full rounded-md border-black border shadow-sm p-2"
               ></textarea>
             </div>
             {/* Color */}
@@ -103,7 +103,7 @@ function ProductForm() {
                 placeholder="Ingresa el color principal del producto"
                 onChange={handleChange}
                 value={values.colorProducto}
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                className="mt-1 block w-full rounded-md border-black border shadow-sm p-2"
               />
             </div>
             {/* Upload file */}
@@ -114,7 +114,7 @@ function ProductForm() {
                 name="imagen"
                 accept="image/*"
                 onChange={(e) => setFieldValue("imagen", e.currentTarget.files[0])}
-                className="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-600 hover:file:bg-indigo-100"
+                className="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-green-50 file:text-green-600 hover:file:bg-green-100"
               />
             </div>
             {/* Categoría */}
@@ -124,7 +124,7 @@ function ProductForm() {
                 name="idCategoria"
                 onChange={handleChange}
                 value={values.idCategoria}
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                className="mt-1 block w-full rounded-md border-black border shadow-sm p-2"
               >
                 {categoria.map((cat) => (
                   <option key={cat.idCategoria} value={cat.idCategoria}>
@@ -138,7 +138,7 @@ function ProductForm() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
               >
                 {isSubmitting ? "Saving..." : "Save"}
               </button>
