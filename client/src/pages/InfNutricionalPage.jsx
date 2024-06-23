@@ -3,7 +3,6 @@ import { Formik, Form } from "formik";
 import { useNavigate, useParams } from "react-router-dom";
 import { useInfood } from "../Context/Context";
 
-
 function InfNutricionalPage() {
   const {
     creandoInformacionNutricional,
@@ -13,9 +12,9 @@ function InfNutricionalPage() {
   } = useInfood();
 
   const params = useParams();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  const [informacionNutricional, setinformacionNutricional] = useState({
+  const [informacionNutricional, setInformacionNutricional] = useState({
     energia: "",
     proteinas: "",
     grasaTotal: "",
@@ -31,10 +30,9 @@ function InfNutricionalPage() {
       }
     }
     loadProducto();
-  }, []);
+  }, [params.id, getOneInfNutricional]);
 
   useEffect(() => {
-    console.log(infNutricional);
     if (infNutricional && infNutricional.length > 0) {
       const nutricionalData = {
         energia: infNutricional[0].energia,
@@ -44,65 +42,125 @@ function InfNutricionalPage() {
         azucaresTotal: infNutricional[0].azucaresTotal,
         sodio: infNutricional[0].sodio,
       };
-      console.log(nutricionalData)
-      setinformacionNutricional(nutricionalData);
+      setInformacionNutricional(nutricionalData);
     }
   }, [infNutricional]);
 
   return (
-    <div>
-      <Formik
-        initialValues={informacionNutricional}
-        enableReinitialize={true}
-        onSubmit={async (values) => {
-          if (infNutricional.length>0) {
-            await updateInfNutricional(params.id, values);
-            alert("Has actualizado los valores de Inf Nutricional")
-            // navigate(`/EditarinfNutricional/${params.id}`)
+    <div className="flex justify-center items-center mt-8 mb-8">
+      <div className="w-full max-w-2xl bg-white shadow-md rounded-lg p-8 border border-gray-200">
+        <h1 className="text-2xl font-semibold mb-6 text-center">
+          {params.id ? "Editando Información Nutricional" : "Creando Información Nutricional"}
+        </h1>
+        <Formik
+          initialValues={informacionNutricional}
+          enableReinitialize={true}
+          onSubmit={async (values) => {
+            if (infNutricional.length > 0) {
+              await updateInfNutricional(params.id, values);
+              alert("Has actualizado los valores de Información Nutricional");
+            } else {
+              await creandoInformacionNutricional(params.id, values);
+              navigate("/");
+            }
+          }}
+        >
+          {({ handleChange, handleSubmit, values }) => (
+            <Form
+              encType="multipart/form-data"
+              onSubmit={handleSubmit}
+              className="space-y-6"
+            >
+              <div>
+                <label className="block text-sm font-medium text-gray-700">
+                  Energía
+                </label>
+                <input
+                  type="number"
+                  name="energia"
+                  onChange={handleChange}
+                  value={values.energia}
+                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2"
+                />
+              </div>
 
-          }else{
-            await creandoInformacionNutricional(params.id, values);
-            navigate("/")
+              <div>
+                <label className="block text-sm font-medium text-gray-700">
+                  Proteínas
+                </label>
+                <input
+                  type="number"
+                  name="proteinas"
+                  onChange={handleChange}
+                  value={values.proteinas}
+                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2"
+                />
+              </div>
 
-          }
-        }}
-      >
-        {({ handleChange, handleSubmit, values }) => (
-          <Form encType="multipart/form-data" onSubmit={handleSubmit}>
-            <label>Energia</label>
-            <input type="number" name="energia" onChange={handleChange} 
-            value={values.energia}/>
+              <div>
+                <label className="block text-sm font-medium text-gray-700">
+                  Grasas Totales
+                </label>
+                <input
+                  type="number"
+                  name="grasaTotal"
+                  onChange={handleChange}
+                  value={values.grasaTotal}
+                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2"
+                />
+              </div>
 
-            <label>Proteinas</label>
-            <input type="number" name="proteinas" onChange={handleChange}
-            value={values.proteinas} />
+              <div>
+                <label className="block text-sm font-medium text-gray-700">
+                  Carbohidratos
+                </label>
+                <input
+                  type="number"
+                  name="carbohidratos"
+                  onChange={handleChange}
+                  value={values.carbohidratos}
+                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2"
+                />
+              </div>
 
-            <label>Grasas Totales</label>
-            <input type="number" name="grasaTotal" onChange={handleChange}
-            value={values.grasaTotal} />
+              <div>
+                <label className="block text-sm font-medium text-gray-700">
+                  Azúcares Totales
+                </label>
+                <input
+                  type="number"
+                  name="azucaresTotal"
+                  onChange={handleChange}
+                  value={values.azucaresTotal}
+                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2"
+                />
+              </div>
 
-            <label>Carbohidratos</label>
-            <input type="number" name="carbohidratos" onChange={handleChange} 
-            value={values.carbohidratos}/>
+              <div>
+                <label className="block text-sm font-medium text-gray-700">
+                  Sodio
+                </label>
+                <input
+                  type="number"
+                  name="sodio"
+                  onChange={handleChange}
+                  value={values.sodio}
+                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2"
+                />
+              </div>
 
-            <label>Azucares Totales</label>
-            <input
-              type="number"
-              name="azucaresTotal"
-              onChange={handleChange}
-              value={values.azucaresTotal}
-            />
-
-            <label>Sodio</label>
-            <input type="number" name="sodio" onChange={handleChange} 
-            value={values.sodio}/>
-
-            {/* Para que funcione es importante poner el id del producto , aún no lo he echo */}
-
-            <button type="submit">Save</button>
-          </Form>
-        )}
-      </Formik>
+              <div>
+                <button
+                  type="submit"
+                  className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+                >
+                  Save
+                </button>
+              </div>
+            </Form>
+          )}
+        </Formik>
+      </div>
     </div>
   );
 }
