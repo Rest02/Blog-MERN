@@ -48,7 +48,7 @@ function InfNutricionalPage() {
 
   return (
     <div className="flex justify-center items-center mt-8 mb-8">
-      <div className="w-full max-w-2xl bg-white shadow-md rounded-lg p-8 border border-gray-200">
+      <div className="w-full max-w-2xl bg-white shadow-md rounded-lg p-8 border border-black">
         <h1 className="text-2xl font-semibold mb-6 text-center">
           {params.id ? "Editando Información Nutricional" : "Creando Información Nutricional"}
         </h1>
@@ -80,7 +80,7 @@ function InfNutricionalPage() {
                   name="energia"
                   onChange={handleChange}
                   value={values.energia}
-                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2"
+                  className="mt-1 block w-full rounded-md border-black border shadow-sm p-2"
                 />
               </div>
 
@@ -93,7 +93,7 @@ function InfNutricionalPage() {
                   name="proteinas"
                   onChange={handleChange}
                   value={values.proteinas}
-                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2"
+                  className="mt-1 block w-full rounded-md border-black border shadow-sm p-2"
                 />
               </div>
 
@@ -106,7 +106,7 @@ function InfNutricionalPage() {
                   name="grasaTotal"
                   onChange={handleChange}
                   value={values.grasaTotal}
-                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2"
+                  className="mt-1 block w-full rounded-md border-black border shadow-sm p-2"
                 />
               </div>
 
@@ -119,7 +119,7 @@ function InfNutricionalPage() {
                   name="carbohidratos"
                   onChange={handleChange}
                   value={values.carbohidratos}
-                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2"
+                  className="mt-1 block w-full rounded-md border-black border shadow-sm p-2"
                 />
               </div>
 
@@ -132,7 +132,7 @@ function InfNutricionalPage() {
                   name="azucaresTotal"
                   onChange={handleChange}
                   value={values.azucaresTotal}
-                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2"
+                  className="mt-1 block w-full rounded-md border-black border shadow-sm p-2"
                 />
               </div>
 
@@ -145,7 +145,7 @@ function InfNutricionalPage() {
                   name="sodio"
                   onChange={handleChange}
                   value={values.sodio}
-                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2"
+                  className="mt-1 block w-full rounded-md border-black border shadow-sm p-2"
                 />
               </div>
 
