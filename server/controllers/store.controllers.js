@@ -165,13 +165,20 @@ export const getProductos = async (req, res) => {
 };
 
 export const getInfNutricional = async (req, res) => {
-  const [result] = await pool.query(
-    "SELECT * FROM infNutricional WHERE idProducto = ?",
-    [req.params.id]
-  );
-  res.json(result);
-  console.log(result);
+  try {
+    const [result] = await pool.query(
+      "SELECT * FROM infNutricional WHERE idProducto = ?",
+      [req.params.id]
+    );
+    res.json(result);
+  } catch (error) {
+    return res.status(404).json({
+      message: "Error al obtener la información nutricional",
+      error: error.message,
+    });
+  }
 };
+
 
 export const getOneProduct = async (req, res) => {
   // try {
