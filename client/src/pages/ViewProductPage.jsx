@@ -13,11 +13,11 @@ function ViewProductPage() {
 
   useEffect(() => {
     async function listOneProduct() {
-      getOneProductoIndv(params.id);
+      await getOneProductoIndv(params.id);
     }
 
     async function listInfNutricional() {
-      getOneInfNutricional(params.id);
+      await getOneInfNutricional(params.id);
     }
 
     listOneProduct();

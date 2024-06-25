@@ -30,7 +30,7 @@ function InfNutricionalPage() {
       }
     }
     loadProducto();
-  }, [params.id, getOneInfNutricional]);
+  }, [params.id]);
 
   useEffect(() => {
     if (infNutricional && infNutricional.length > 0) {

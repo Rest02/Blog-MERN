@@ -171,6 +171,7 @@ export const getInfNutricional = async (req, res) => {
       [req.params.id]
     );
     res.json(result);
+    console.log(result)
   } catch (error) {
     return res.status(404).json({
       message: "Error al obtener la información nutricional",
