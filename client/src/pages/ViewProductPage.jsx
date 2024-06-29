@@ -29,7 +29,6 @@ function ViewProductPage() {
       <CardComponent1 producto={producto} />
       {infNutricional && infNutricional.length > 0 ? (
         <div>
-          <h1>Informacion Nutricional</h1>
           <InfNutricionalCard infNutricional = {infNutricional}/>
           <button
             onClick={() => navigate(`/EditarinfNutricional/${params.id}`)}

@@ -1,18 +1,44 @@
 import React from "react";
 
-function InfNutricionalCard({infNutricional}) {
+function InfNutricionalCard({ infNutricional }) {
   return (
-    <div>
-      {infNutricional.map((inf) => (
-        <div key={inf.idInfNutricional}>
-          <h2>Energia del producto: {inf.energia}</h2>
-          <h2>Proteinas del producto: {inf.proteinas}</h2>
-          <h2>Grasa Total del producto: {inf.grasaTotal}</h2>
-          <h2>Carbohidratos Total del producto: {inf.carbohidratos}</h2>
-          <h2>Azucares Totales del producto: {inf.azucaresTotal}</h2>
-          <h2>Sodio Total del producto: {inf.sodio}</h2>
+    <div className="min-h-screen flex items-center justify-center px-4">
+      <div className="max-w-4xl bg-white w-full rounded-lg shadow-xl">
+        <div className="p-4 border-b">
+          <h2 className="text-2xl">Información Nutricional</h2>
+          <p className="text-sm text-gray-500">Detalles nutricionales del producto</p>
         </div>
-      ))}
+        <div>
+          {infNutricional.map((inf) => (
+            <div key={inf.idInfNutricional}>
+              <div className="md:grid md:grid-cols-2 hover:bg-gray-50 md:space-y-0 space-y-1 p-4 border-b">
+                <p className="text-gray-600">Energía del producto</p>
+                <p>{inf.energia}</p>
+              </div>
+              <div className="md:grid md:grid-cols-2 hover:bg-gray-50 md:space-y-0 space-y-1 p-4 border-b">
+                <p className="text-gray-600">Proteínas del producto</p>
+                <p>{inf.proteinas}</p>
+              </div>
+              <div className="md:grid md:grid-cols-2 hover:bg-gray-50 md:space-y-0 space-y-1 p-4 border-b">
+                <p className="text-gray-600">Grasa Total del producto</p>
+                <p>{inf.grasaTotal}</p>
+              </div>
+              <div className="md:grid md:grid-cols-2 hover:bg-gray-50 md:space-y-0 space-y-1 p-4 border-b">
+                <p className="text-gray-600">Carbohidratos Totales del producto</p>
+                <p>{inf.carbohidratos}</p>
+              </div>
+              <div className="md:grid md:grid-cols-2 hover:bg-gray-50 md:space-y-0 space-y-1 p-4 border-b">
+                <p className="text-gray-600">Azúcares Totales del producto</p>
+                <p>{inf.azucaresTotal}</p>
+              </div>
+              <div className="md:grid md:grid-cols-2 hover:bg-gray-50 md:space-y-0 space-y-1 p-4 border-b">
+                <p className="text-gray-600">Sodio Total del producto</p>
+                <p>{inf.sodio}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
