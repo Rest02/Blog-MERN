@@ -7,50 +7,42 @@ function CategoriaCard({ categoria }) {
   const { deleteCategoria } = useInfood();
 
   return (
-    <div className="min-w-screen min-h-screen flex items-center p-5 lg:p-10 overflow-hidden relative">
-      <div className="w-full max-w-6xl rounded bg-white shadow-xl p-10 lg:p-20 mx-auto text-gray-800 relative md:text-left">
-        <h1 className="font-bold text-3xl mb-10 text-center">Categorías</h1>
-        {categoria.map((cat) => (
-          <div className="md:flex items-center -mx-10 border border-black mb-10" key={cat.idCategoria}>
-            <div className="w-full md:w-1/2 px-10 mb-10 md:mb-0">
-              <div className="relative">
+    <div className="flex justify-center items-center">
+      <div className="2xl:mx-auto 2xl:container py-12 px-4 sm:px-6 xl:px-20 2xl:px-0 w-full">
+        <div className="flex flex-col justify-center items-center space-y-10">
+          <div className="flex flex-col justify-center items-center ">
+            <h1 className="text-3xl xl:text-4xl font-semibold leading-7 xl:leading-9 text-gray-800 dark:text-white">Categorías</h1>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md:gap-x-4 md:gap-x-8 w-full">
+            {categoria.map((cat) => (
+              <div className="relative group flex justify-center items-center h-full w-full" key={cat.idCategoria}>
                 <img
+                  className="object-center object-cover h-full w-full"
                   src={`http://localhost:4000/images/${cat.imagen}`}
-                  className="w-full relative z-10"
                   alt={cat.nombreCategoria}
                 />
-                <div className="border border-black absolute top-10 bottom-10 left-10 right-10 z-0"></div>
+                <div className="absolute bottom-4 z-10 flex flex-col items-center">
+                  <button
+                    onClick={() => navigate(`/categoriaForm/${cat.idCategoria}`)}
+                    className="dark:bg-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 text-base font-medium leading-none text-gray-800 py-3 w-36 bg-white mb-2"
+                  >
+                    Editar
+                  </button>
+                  <button
+                    onClick={() => {
+                      deleteCategoria(cat.idCategoria);
+                      navigate(0);
+                    }}
+                    className="dark:bg-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 text-base font-medium leading-none text-gray-800 py-3 w-36 bg-white"
+                  >
+                    Eliminar
+                  </button>
+                </div>
+                <div className="absolute opacity-0 group-hover:opacity-100 transition duration-500 bottom-3 py-6 z-0 px-20 w-36 bg-white bg-opacity-50"></div>
               </div>
-            </div>
-            <div className="w-full md:w-1/2 px-10">
-              <div className="mb-10">
-                <h1 className="font-bold uppercase text-2xl mb-5">
-                  {cat.nombreCategoria}
-                </h1>
-                <p className="text-sm mb-5">
-                  {cat.descripcionCategoria}
-                </p>
-              </div>
-              <div>
-                <button
-                  onClick={() => navigate(`/categoriaForm/${cat.idCategoria}`)}
-                  className="bg-blue-500 text-white rounded-full px-5 py-2 mr-5 hover:bg-blue-700"
-                >
-                  Editar Categoría
-                </button>
-                <button
-                  onClick={() => {
-                    deleteCategoria(cat.idCategoria);
-                    navigate(0);
-                  }}
-                  className="bg-red-500 text-white rounded-full px-5 py-2 hover:bg-red-700"
-                >
-                  Eliminar Categoría
-                </button>
-              </div>
-            </div>
+            ))}
           </div>
-        ))}
+        </div>
       </div>
     </div>
   );
