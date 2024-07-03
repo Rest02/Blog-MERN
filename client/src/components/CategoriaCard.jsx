@@ -12,7 +12,7 @@ function CategoriaCard({ categoria }) {
         <div className="flex flex-wrap -m-4">
           {categoria.map((cat) => (
             <div className="p-4 md:w-1/3" key={cat.idCategoria}>
-              <div className="h-full rounded-xl shadow-cla-blue bg-gradient-to-r from-indigo-50 to-blue-50 overflow-hidden">
+              <div className="h-full rounded-xl border border-black bg-white overflow-hidden">
                 <img
                   className="lg:h-48 md:h-36 w-full object-cover object-center scale-110 transition-all duration-400 hover:scale-100"
                   src={`http://localhost:4000/images/${cat.imagen}`}
@@ -31,7 +31,7 @@ function CategoriaCard({ categoria }) {
                   <div className="flex items-center flex-wrap space-x-3">
                     <button
                       onClick={() => navigate(`/categoriaForm/${cat.idCategoria}`)}
-                      className="bg-gradient-to-r from-cyan-400 to-blue-400 hover:scale-105 drop-shadow-md shadow-cla-blue px-4 py-1 rounded-lg"
+                      className="transition-colors duration-500 bg-green-600 hover:bg-green-700  text-white px-4 py-1 rounded-lg"
                     >
                       Editar
                     </button>
@@ -40,7 +40,7 @@ function CategoriaCard({ categoria }) {
                         deleteCategoria(cat.idCategoria);
                         navigate(0);
                       }}
-                      className="bg-gradient-to-r from-cyan-400 to-blue-400 hover:scale-105 drop-shadow-md shadow-cla-blue px-4 py-1 rounded-lg"
+                      className="transition-colors duration-500 bg-green-600 hover:bg-green-700  text-white px-4 py-1 rounded-lg"
                     >
                       Eliminar
                     </button>
