@@ -14,7 +14,7 @@ function CategoriaCard({ categoria }) {
             <div className="p-4 md:w-1/3" key={cat.idCategoria}>
               <div className="h-full rounded-xl border border-black bg-white overflow-hidden">
                 <img
-                  className="lg:h-48 md:h-36 w-full object-cover object-center scale-110 transition-all duration-400 hover:scale-100"
+                  className="lg:h-48 md:h-36 w-full object-cover object-center scale-110 transition-transform duration-700 ease-in-out hover:scale-100"
                   src={`http://localhost:4000/images/${cat.imagen}`}
                   alt={cat.nombreCategoria}
                 />
@@ -25,13 +25,11 @@ function CategoriaCard({ categoria }) {
                   <h1 className="title-font text-lg font-medium text-gray-600 mb-3">
                     {cat.nombreCategoria}
                   </h1>
-                  <p className="leading-relaxed mb-3">
-                    {cat.descripcion}
-                  </p>
+                  <p className="leading-relaxed mb-3">{cat.descripcion}</p>
                   <div className="flex items-center flex-wrap space-x-3">
                     <button
                       onClick={() => navigate(`/categoriaForm/${cat.idCategoria}`)}
-                      className="transition-colors duration-500 bg-green-600 hover:bg-green-700  text-white px-4 py-1 rounded-lg"
+                      className="transition-colors duration-500 bg-green-600 hover:bg-green-700 border border-black text-white px-4 py-1 rounded-lg"
                     >
                       Editar
                     </button>
@@ -40,7 +38,7 @@ function CategoriaCard({ categoria }) {
                         deleteCategoria(cat.idCategoria);
                         navigate(0);
                       }}
-                      className="transition-colors duration-500 bg-green-600 hover:bg-green-700  text-white px-4 py-1 rounded-lg"
+                      className="transition-colors duration-500 bg-green-600 hover:bg-green-700 border border-black text-white px-4 py-1 rounded-lg"
                     >
                       Eliminar
                     </button>
