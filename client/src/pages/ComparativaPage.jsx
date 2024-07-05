@@ -4,12 +4,7 @@ import { Formik, Form } from "formik";
 import ComponenteComparativa from "../components/ComponenteComparativa";
 
 function ComparativaPage() {
-  const {
-    cargarTareas,
-    productos,
-    listarComparativa,
-    comparativa,
-  } = useInfood();
+  const { cargarTareas, productos, listarComparativa, comparativa } = useInfood();
 
   useEffect(() => {
     async function loadProducts() {
@@ -23,7 +18,7 @@ function ComparativaPage() {
   }, [comparativa]);
 
   return (
-    <div>
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 py-8">
       <Formik
         initialValues={{
           idProducto: "",
@@ -39,32 +34,54 @@ function ComparativaPage() {
         }}
       >
         {({ handleChange, handleSubmit }) => (
-          <Form onSubmit={handleSubmit}>
-            <label>Seleccione alternativa A</label>
-            <select name="idProducto" onChange={handleChange}>
-              <option>Selecciona la opcion</option>
-              {productos.map((cat) => (
-                <option key={cat.idProducto} value={cat.idProducto}>
-                  {cat.nombreProducto}
-                </option>
-              ))}
-            </select>
-            <label>Seleccione producto B</label>
-            <select name="idProducto2" onChange={handleChange}>
-              <option>Selecciona la opcion</option>
-              {productos.map((cat) => (
-                <option key={cat.idProducto} value={cat.idProducto}>
-                  {cat.nombreProducto}
-                </option>
-              ))}
-            </select>
+          <Form onSubmit={handleSubmit} className="bg-white p-6 rounded-lg shadow-lg border border-black w-full max-w-lg">
+            <div className="mb-4">
+              <label className="block text-gray-700 text-sm font-bold mb-2">
+                Seleccione alternativa A
+              </label>
+              <select
+                name="idProducto"
+                onChange={handleChange}
+                className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:border-green-500"
+              >
+                <option>Selecciona la opción</option>
+                {productos.map((cat) => (
+                  <option key={cat.idProducto} value={cat.idProducto}>
+                    {cat.nombreProducto}
+                  </option>
+                ))}
+              </select>
+            </div>
 
-            <button type="submit">save</button>
+            <div className="mb-4">
+              <label className="block text-gray-700 text-sm font-bold mb-2">
+                Seleccione producto B
+              </label>
+              <select
+                name="idProducto2"
+                onChange={handleChange}
+                className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:border-green-500"
+              >
+                <option>Selecciona la opción</option>
+                {productos.map((cat) => (
+                  <option key={cat.idProducto} value={cat.idProducto}>
+                    {cat.nombreProducto}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <button
+              type="submit"
+              className="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            >
+              Guardar
+            </button>
           </Form>
         )}
       </Formik>
 
-      <div>
+      <div className="mt-8 w-full max-w-4xl">
         <ComponenteComparativa comparativa={comparativa} />
       </div>
     </div>
