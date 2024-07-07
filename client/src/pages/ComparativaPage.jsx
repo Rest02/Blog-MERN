@@ -18,7 +18,7 @@ function ComparativaPage() {
   }, [comparativa]);
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 py-8">
+    <div className="flex flex-col items-center justify-start min-h-screen py-8 bg-white">
       <Formik
         initialValues={{
           idProducto: "",
