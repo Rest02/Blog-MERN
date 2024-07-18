@@ -19,9 +19,6 @@ function NavBar() {
             <Link to="/nosotros" className="text-gray-600 hover:text-gray-900 transition-colors">
               Nosotros
             </Link>
-            <Link to="/editEmpresa" className="text-gray-600 hover:text-gray-900 transition-colors">
-              Editar Empresa
-            </Link>
             <Link to="/categorias" className="text-gray-600 hover:text-gray-900 transition-colors">
               Categorías de productos
             </Link>
