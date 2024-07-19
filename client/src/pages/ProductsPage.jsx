@@ -1,14 +1,14 @@
 import React, { useEffect } from "react";
 import ProductoCard from "../components/ProductoCard";
-import { useInfood } from "../Context/Context"
-import inicio from '../images/inicio.jpg'
+import { useInfood } from "../Context/Context";
+import inicio from '../images/inicio.jpg';
 
 function ProductsList() {
   const { productos, cargarTareas } = useInfood();
 
   useEffect(() => {
     cargarTareas();
-  }, []);
+  }, [cargarTareas]);
 
   function renderMain() {
     if (productos.length === 0) {
