@@ -21,7 +21,7 @@ function ViewProductPage() {
 
     listOneProduct();
     listInfNutricional();
-  }, [params.id, getOneProductoIndv, getOneInfNutricional]);
+  }, [params.id]);
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 py-8">
