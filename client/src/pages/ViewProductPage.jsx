@@ -30,12 +30,7 @@ function ViewProductPage() {
         <div className="mt-4">
           <CardComponent1 producto={producto} infNutricional={infNutricional}/>
           {/* <InfNutricionalCard infNutricional={infNutricional} /> */}
-          <button
-            onClick={() => navigate(`/EditarinfNutricional/${params.id}`)}
-            className="mt-4 transition-colors duration-500 bg-green-600 hover:bg-green-700 border border-black text-white px-4 py-2 rounded-lg"
-          >
-            Editar Información Nutricional
-          </button>
+
         </div>
       ) : (
         <div className="mt-4">

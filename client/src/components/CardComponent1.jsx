@@ -50,7 +50,7 @@ function CardComponent1({ producto, infNutricional }) {
           </div>
         </div>
       ))}
-      <div className="flex items-center justify-center px-4 mt-10">
+      <div className="flex flex-col items-center justify-center px-4 mt-10">
         <div className="w-full max-w-6xl bg-white rounded-lg shadow-xl border border-black">
           <div className="p-4 border-b border-black">
             <h2 className="text-2xl">Información Nutricional</h2>
@@ -89,10 +89,15 @@ function CardComponent1({ producto, infNutricional }) {
             ))}
           </div>
         </div>
+        <button
+          onClick={() => navigate(`/EditarinfNutricional/${params.id}`)}
+          className="mt-11 transition-colors duration-500 bg-green-600 hover:bg-green-700 border border-black text-white px-4 py-2 rounded-lg self-start"
+        >
+          Editar Información Nutricional
+        </button>
       </div>
     </div>
   );
 }
 
 export default CardComponent1;
-
