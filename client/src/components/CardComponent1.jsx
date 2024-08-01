@@ -43,7 +43,7 @@ function CardComponent1({ producto, infNutricional }) {
               </div>
               <div className="inline-block align-bottom">
                 <button className="bg-yellow-300 opacity-75 hover:opacity-100 text-yellow-900 hover:text-gray-900 rounded-full px-10 py-2 font-semibold">
-                  <i className="mdi mdi-cart -ml-2 mr-2"></i> BUY NOW
+                  <i className="mdi mdi-cart -ml-2 mr-2"></i> Analizar
                 </button>
               </div>
             </div>
