@@ -24,26 +24,13 @@ function CardComponent1({ producto, infNutricional }) {
                 {pro.descripcionProducto} <br />
                 Color: {pro.colorProducto}
               </p>
-              <a
-                href="#"
-                className="opacity-50 text-gray-900 hover:opacity-100 inline-block text-xs leading-none border-b border-gray-900"
-              >
-                MORE <i className="mdi mdi-arrow-right"></i>
-              </a>
+
             </div>
             <div>
-              <div className="inline-block align-bottom mr-5">
-                <span className="text-2xl leading-none align-baseline">$</span>
-                <span className="font-bold text-5xl leading-none align-baseline">
-                  59
-                </span>
-                <span className="text-2xl leading-none align-baseline">
-                  .99
-                </span>
-              </div>
+
               <div className="inline-block align-bottom">
                 <button className="bg-yellow-300 opacity-75 hover:opacity-100 text-yellow-900 hover:text-gray-900 rounded-full px-10 py-2 font-semibold">
-                  <i className="mdi mdi-cart -ml-2 mr-2"></i> Analizar
+                  <i className="mdi mdi-cart -ml-2 mr-2"></i> Ir a comparativa
                 </button>
               </div>
             </div>
