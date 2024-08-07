@@ -34,6 +34,7 @@ function ViewProductPage() {
         </div>
       ) : (
         <div className="mt-4">
+          {/* Crear nuevo componente donde solo se muestre la card del producto y mas abajo el titulo que indique que no tiene inf nutricional aun */}
           <button
             onClick={() => navigate(`/infNutricional/${params.id}`)}
             className="transition-colors duration-500 bg-green-600 hover:bg-green-700 border border-black text-white px-4 py-2 rounded-lg"
